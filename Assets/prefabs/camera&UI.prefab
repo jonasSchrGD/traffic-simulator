@@ -1139,10 +1139,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 3038726628594286725}
   m_HandleRect: {fileID: 5963815922386874674}
   m_Direction: 0
-  m_MinValue: 0.1
-  m_MaxValue: 1
+  m_MinValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1617,6 +1617,7 @@ MonoBehaviour:
   _RoadBP: {fileID: 2641271596474975957, guid: e86960352523646478ce6847e4290482, type: 3}
   _SpawnerBP: {fileID: 2441139119403812785, guid: bc60ee0c22b8e0149999974055d11ba4,
     type: 3}
+  _EndBP: {fileID: 5339128985970317113, guid: 49ba10fb6aa1fb24b8d654466caa7cff, type: 3}
   _UIBackGround: {fileID: 5000142474845047650}
   _BuildingSelection: {fileID: 4203394950193411932}
 --- !u!114 &6408441988352090924
@@ -1822,7 +1823,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: spawn interval 0.5
+  m_Text: 'spawn interval:
+
+    3'
 --- !u!1 &7617816122568153041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,7 +1976,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: spawn cars
+  m_Text: simulate
 --- !u!1 &7690403388525281841
 GameObject:
   m_ObjectHideFlags: 0

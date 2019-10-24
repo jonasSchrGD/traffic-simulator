@@ -70,10 +70,15 @@ public class Lane : MonoBehaviour
         return (_Path[_Path.Count - 1] - _Path[0]).normalized;
     }
 
+    [SerializeField]
+    float _MaxVehicleCount = 1;
     private void Update()
     {
         if (_Vehicles.Count > 0)
-            _Density = _Vehicles.Count / (_Length / (_Vehicles[0].GetComponent<Vehicle>()._CarLength + _Vehicles[0].GetComponent<Vehicle>()._MinDistance));
+        {
+            _MaxVehicleCount = (_Length / (_Vehicles[0].GetComponent<Vehicle>()._CarLength + _Vehicles[0].GetComponent<Vehicle>()._MinDistance));
+            _Density = _Vehicles.Count / _MaxVehicleCount;
+        }
         else
             _Density = 0;
     }
@@ -87,12 +92,6 @@ public class Lane : MonoBehaviour
 
         if (vehicleIdx == -1 && _Vehicles.Count > 0)
             return _Vehicles[_Vehicles.Count - 1];
-
-        if(_Nodes[1].connectedLanes.Count == 1)
-        {
-            if (_Nodes[1].connectedLanes[0].VehicleCount > 0)
-                return _Nodes[1].connectedLanes[0]._Vehicles[_Nodes[1].connectedLanes[0].VehicleCount - 1];
-        }
 
         return null;
     }
@@ -110,7 +109,9 @@ public class Lane : MonoBehaviour
 
     public void AddVehicle(GameObject vehicle)
     {
-        _Vehicles.Add(vehicle);
+        if (_Vehicles.IndexOf(vehicle) == -1)
+            _Vehicles.Add(vehicle);
+
         if (vehicle.GetComponent<Vehicle>().currentLane)
             vehicle.GetComponent<Vehicle>().currentLane.RemoveVehicle(vehicle);
         vehicle.GetComponent<Vehicle>().currentLane = this;
@@ -149,6 +150,11 @@ public class Lane : MonoBehaviour
         }
     }
 
+    public bool CanEnter()
+    {
+        return _Vehicles.Count + 1 <= _MaxVehicleCount;
+    }
+
     //network calculations
     private float gCost = 0, hCost = 0;
     public float fCost
@@ -184,5 +190,18 @@ public class Lane : MonoBehaviour
 
         hCost = (_Nodes[1].position - endNode.position).magnitude;
         hCost += _Density * _Length;
+    }
+
+    private void OnDestroy()
+    {
+        DestroyVehicles();
+    }
+
+    public void DestroyVehicles()
+    {
+        for (int i = 0; i < _Vehicles.Count; i++)
+        {
+            Destroy(_Vehicles[i]);
+        }
     }
 }

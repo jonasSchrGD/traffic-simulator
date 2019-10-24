@@ -192,8 +192,12 @@ public class Road : RoadStructure
                 crossroad.DisconnectRoad(_EndPoints[i]);
         }
     }
-    public void ConnectSpawner(GameObject spawner, int endToConnect)
+
+    public bool ConnectSpawner(GameObject spawner, int endToConnect)
     {
+        if (_EndPoints[endToConnect]._ConnectedSpawner)
+            return false;
+
         VehicleSpawner vSpawner = spawner.GetComponent<VehicleSpawner>();
 
         Vector3 pos = _EndPoints[endToConnect]._LaneBeginPoint.position;
@@ -201,6 +205,35 @@ public class Road : RoadStructure
         spawner.transform.position = pos;
         spawner.transform.parent = transform;
         vSpawner._ConnectedLane = _EndPoints[endToConnect]._LaneBeginPoint.connectedLanes[0];
+
+        _EndPoints[endToConnect]._ConnectedSpawner = spawner;
+        return true;
+    }
+    public void RemoveSpawner(int endToRemove)
+    {
+        if (_EndPoints[endToRemove]._ConnectedSpawner)
+            Destroy(_EndPoints[endToRemove]._ConnectedSpawner);
+    }
+    public bool ConnectEnd(GameObject end, int endToConnect)
+    {
+        if (_EndPoints[endToConnect]._ConnectedEnd)
+            return false;
+
+        VehicleEnd vEnd = end.GetComponent<VehicleEnd>();
+
+        Vector3 pos = _EndPoints[endToConnect]._LaneEndPoint.position;
+        pos.z = -0.01f;
+        end.transform.position = pos;
+        end.transform.parent = transform;
+        vEnd._ConnectedNode = _EndPoints[endToConnect]._LaneEndPoint;
+
+        _EndPoints[endToConnect]._ConnectedEnd = end;
+        return true;
+    }
+    public void RemoveEnd(int endToRemove)
+    {
+        if (_EndPoints[endToRemove]._ConnectedEnd)
+            Destroy(_EndPoints[endToRemove]._ConnectedEnd);
     }
 
     public void EnableColliders()

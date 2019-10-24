@@ -114,4 +114,5 @@ public class EndPoint : MonoBehaviour
 
     //lane ends
     public Node _LaneEndPoint, _LaneBeginPoint;
+    public GameObject _ConnectedSpawner, _ConnectedEnd;
 }

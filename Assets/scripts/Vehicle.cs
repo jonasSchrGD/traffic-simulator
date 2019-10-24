@@ -28,18 +28,22 @@ public class Vehicle : MonoBehaviour
     private int _AccelerationExp = 4;
     private int _PointIdx = 1;
     Vector2 _OldTarget, _CurrentTarget;
-    Vector2 _OldDirection;
-    float _RotationTime = 0;
 
     [SerializeField]
     private float _MaxAcceleration = 7;
     [SerializeField]
     private float _Maxdeceleration = 6;
 
-    private Vector3 _FreeTarget;
     private Lane _FreeLane;
 
-    public List<Node> path = null;
+    public List<Lane> path
+    {
+        set
+        {
+            _Path = value;
+        }
+    }
+    private List<Lane> _Path;
     private int _PathIdx = 0;
 
     [Header("DEBUG: do not touch"), SerializeField]
@@ -50,22 +54,11 @@ public class Vehicle : MonoBehaviour
     float acceleration = 0;
     [SerializeField]
     Vector2 direction = Vector2.zero;
+    [SerializeField]
+    private Vector3 _FreeTarget;
 
     private void Start()
     {
-        transform.position = path[0].position;
-        while (!GetNextLane())
-        {
-            List<Node> newPath = Network.instance.CalculatePath(path[_PathIdx], path[path.Count - 1]);
-            if (newPath == null)
-            {
-                Destroy(gameObject);
-                break;
-            }
-            else
-                path = newPath;
-        }
-
         if (_CurrentLane != null)
         {
             _OldTarget = _CurrentLane.path[0];
@@ -74,6 +67,7 @@ public class Vehicle : MonoBehaviour
             UpdateRotation();
             FindFreeTarget();
             _FreeLane = _CurrentLane;
+            FindLeadingVehicle();
         }
 
         _CarLength = GetComponent<SpriteRenderer>().size.x * transform.localScale.x;
@@ -85,16 +79,6 @@ public class Vehicle : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, _CurrentTarget, Time.deltaTime * _Velocity);
         UpdateTarget(freeAcceleration);
-
-        if(_RotationTime < 1)
-        {
-            Quaternion newRot = Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.right, direction), Vector3.forward);
-            _RotationTime += Time.deltaTime / 0.6f;
-
-            transform.rotation = Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.right, Vector2.Lerp(_OldDirection, direction, _RotationTime)), Vector3.forward);
-        }
-
-
     }
 
     bool _Destroy = false;
@@ -109,46 +93,49 @@ public class Vehicle : MonoBehaviour
             {
                 while (!GetNextLane() && !_Destroy)
                 {
-                    List<Node> newPath = Network.instance.CalculatePath(path[_PathIdx], path[path.Count - 1]);
+                    List<Lane> newPath = Network.instance.CalculatePath(_Path[_PathIdx]._Nodes[0], _Path[_Path.Count - 1]._Nodes[1]);
                     if (newPath == null)
                     {
                         Destroy(gameObject);
                         break;
                     }
                     else
-                        path = newPath;
+                        _Path = newPath;
                 }
             }
 
             UpdateRotation();
         }
-        if ((Vector2)_FreeTarget == path[path.Count - 1].position && (_FreeTarget - transform.position).magnitude - _CarLength / 2 < 1)
+        if ((Vector2)_FreeTarget == _Path[_Path.Count - 1]._Nodes[1].position && (_FreeTarget - transform.position).magnitude - _CarLength / 2 < 1)
             GetNextLane();
         FindFreeTarget();
     }
     private bool GetNextLane()
     {
-        if(_PathIdx == path.Count - 1)
+        if(_PathIdx == _Path.Count - 1)
         {
             Destroy(gameObject);
             _Destroy = true;
             return false;
         }
 
-        int idx = 0;
-        Lane current = path[_PathIdx].connectedLanes[idx];
-        while (current._Nodes[1] != path[_PathIdx + 1])
-        {
-            ++idx;
-            if (idx == path[_PathIdx].connectedLanes.Count)
-                return false;
+        int idx = _CurrentLane._Nodes[1].connectedLanes.IndexOf(_Path[_PathIdx + 1]);
 
-            current = path[_PathIdx].connectedLanes[idx];
-        }
+        if (idx == -1)
+            return false;
+
         ++_PathIdx;
+        Lane current = _Path[_PathIdx];
         current.AddVehicle(gameObject);
         _CurrentLane = current;
-        _LeadingVehicle = _CurrentLane.GetLeadingVehicle(gameObject);
+        FindLeadingVehicle();
+
+        if (_CurrentCrossroad && _CurrentLane.Parent != null)
+        {
+            _CurrentCrossroad.LeaveCrossRoad();
+            _CurrentCrossroad = null;
+        }
+
         return true;
     }
 
@@ -190,9 +177,10 @@ public class Vehicle : MonoBehaviour
 
     private void UpdateRotation()
     {
-        _OldDirection = direction;
         direction = _CurrentTarget - _OldTarget;
-        _RotationTime = 0;
+
+        if (direction != Vector2.zero)
+            transform.rotation = Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.right, direction), Vector3.forward);
     }
 
     Crossroad _CurrentCrossroad = null;
@@ -215,20 +203,13 @@ public class Vehicle : MonoBehaviour
             _CurrentLane._Nodes[1].parent.crossroad && _CurrentLane._Nodes[1].parent.crossroad.roadCount > 2 && 
             endLane._Nodes[1].parent.crossroad.EnterCrossroad(gameObject))
         {
-            if(!_LeadingVehicle  || _LeadingVehicle && Vector2.Distance(transform.position, _LeadingVehicle.transform.position) - _CarLength > _MinDistance * 1.5f)
+            if (_CurrentLane.GetLeadingVehicle(gameObject) == null && _Path[_PathIdx + 2].CanEnter())
             {
                 _CurrentCrossroad = endLane._Nodes[1].parent.crossroad;
                 _FreeTarget = Vector3.forward * 10000;
             }
-        }
-        if (_CurrentCrossroad && _CurrentLane._Nodes[0].parent.crossroad == _CurrentCrossroad && _CurrentCrossroad != _CurrentLane._Nodes[1].parent.crossroad)
-        {
-            if (Vector2.Distance(_CurrentLane._Nodes[0].position, transform.position) > _CarLength / 2)
-            {
-                _CurrentCrossroad.LeaveCrossRoad();
-                _FreeTarget = Vector3.forward * 10000;
-                _CurrentCrossroad = null;
-            }
+            else
+                endLane._Nodes[1].parent.crossroad.LeaveCrossRoad();
         }
 
         if (!_CurrentCrossroad)
@@ -262,9 +243,19 @@ public class Vehicle : MonoBehaviour
     }
     private void FindLeadingVehicle()
     {
+        int offset = 1;
+
         _LeadingVehicle = _CurrentLane.GetLeadingVehicle(gameObject);
         if (_LeadingVehicle)
             _LeadingVehicle.GetComponent<Vehicle>()._FollowingVehicle = gameObject;
+        else
+            while (_LeadingVehicle == null && _PathIdx + offset < _Path.Count)
+            {
+                _LeadingVehicle = _Path[_PathIdx + offset].GetLeadingVehicle(gameObject);
+                if (_LeadingVehicle)
+                    _LeadingVehicle.GetComponent<Vehicle>()._FollowingVehicle = gameObject;
+                ++offset;
+            }
     }
 
     private void OnDestroy()

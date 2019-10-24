@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Network : MonoBehaviour
 {
-    float _SpawnInterval = 0.5f;
+    float _SpawnInterval = 3;
     public float spawnInterval
     {
         get
@@ -33,6 +33,7 @@ public class Network : MonoBehaviour
 
     private List<Lane> _Links = new List<Lane>();
     private List<VehicleSpawner> _Spawners = new List<VehicleSpawner>();
+    private List<VehicleEnd> _Ends = new List<VehicleEnd>();
 
     [SerializeField]
     private GameObject _VehicleBP = null;
@@ -74,8 +75,18 @@ public class Network : MonoBehaviour
     {
         _Spawners.Remove(spawner);
     }
+    public void AddEnd(VehicleEnd end)
+    {
+        if (_Ends.IndexOf(end) == -1)
+            _Ends.Add(end);
+    }
+    public void RemoveEnd(VehicleEnd end)
+    {
+        _Ends.Remove(end);
+    }
 
-    public List<Node> CalculatePath(Node startPoint, Node EndPoint)
+
+    public List<Lane> CalculatePath(Node startPoint, Node EndPoint)
     {
         //based on A* from gameplay programming
         List<Lane> openList = new List<Lane>();
@@ -135,32 +146,36 @@ public class Network : MonoBehaviour
             }
         }
 
-        List<Node> path = new List<Node>();
+        List<Lane> path = new List<Lane>();
         if (currentLane == null)
             return null;
 
-        path.Add(currentLane._Nodes[1]);
         while (currentLane._Nodes[0] != startPoint)
         {
-            path.Insert(0, currentLane._Nodes[0]);
+            path.Insert(0, currentLane);
             currentLane = currentLane.headConnection;
 
             if (path.Count > 500)
                 return null;//dirty fix to avoid infinite loop
         }
-        path.Insert(0, currentLane._Nodes[0]);
+        path.Insert(0, currentLane);
 
         return path;
     }
-    public List<Node> CalculatePath(Node startPoint)
+    public List<Lane> CalculatePath(Node startPoint)
     {
-        return CalculatePath(startPoint, startPoint);
+        return CalculatePath(startPoint, _Ends[Random.Range(0, _Ends.Count - 1)].GetConnectedNode());
     }
 
     //UI functions
     public void Simulate()
     {
         _Simulate = !_Simulate;
+        if(!_Simulate)
+            for (int i = 0; i < _Links.Count; i++)
+            {
+                _Links[i].DestroyVehicles();
+            }
     }
     public void DrawDensity()
     {
@@ -176,14 +191,33 @@ public class Network : MonoBehaviour
         _SpawnIntervalText.text = "spawn interval\n" + _Slider.value;
     }
 
+    float _Delta = 0;
+    private void Update()
+    {
+        if(_Simulate && _Ends.Count > 0 && _Spawners.Count > 0)
+        {
+            _Delta += Time.deltaTime;
+
+            if(_Delta >= _SpawnInterval)
+            {
+                int count = 0;
+                while(!_Spawners[Random.Range(0, _Spawners.Count - 1)].SpawnVehicle() && count < _Spawners.Count * 1.5f)
+                {
+                    ++count;
+                }
+                _Delta -= _SpawnInterval;
+            }
+        }
+    }
+
     //debug purpose
-    //private void OnDrawGizmos()
-    //{
-    //    foreach (Lane link in _Links)
-    //    {
-    //        Gizmos.color = Color.green;
-    //        link.DrawGizmos();
-    //    }
-    //}
+    private void OnDrawGizmos()
+    {
+        foreach (Lane link in _Links)
+        {
+            Gizmos.color = Color.green;
+            link.DrawGizmos();
+        }
+    }
 }
 

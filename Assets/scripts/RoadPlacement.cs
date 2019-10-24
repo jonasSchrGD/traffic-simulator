@@ -9,6 +9,8 @@ public class RoadPlacement : MonoBehaviour
     private GameObject _RoadBP = null;
     [SerializeField]
     private GameObject _SpawnerBP = null;
+    [SerializeField]
+    private GameObject _EndBP = null;
 
     private Road _CurrentRoad;
     private Crossroad _CurrentCrossRoad;
@@ -31,7 +33,7 @@ public class RoadPlacement : MonoBehaviour
         _CurrentMousePos = Input.mousePosition;
 
         UpdateCameraInput();
-        if (_State == 3)
+        if (_State == 3 || Network.instance.isSimulating)
         {
             UpdateSimulateInput();
             UpdateSimulateMode();
@@ -84,7 +86,17 @@ public class RoadPlacement : MonoBehaviour
 
     private void UpdateSimulateInput()
     {
-
+        switch (_State)
+        {
+            case 1:
+                PlaceSpawner();
+                break;
+            case 2:
+                PlaceEnd();
+                break;
+            default:
+                break;
+        }
     }
     private void UpdateSimulateMode()
     {
@@ -208,18 +220,32 @@ public class RoadPlacement : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 GameObject spawner = Instantiate(_SpawnerBP);
-                road.ConnectSpawner(spawner, road.GetClickedRoadEnd(Camera.main.ScreenToWorldPoint(_CurrentMousePos)));
+                if (!road.ConnectSpawner(spawner, road.GetClickedRoadEnd(Camera.main.ScreenToWorldPoint(_CurrentMousePos))))
+                    Destroy(spawner);
             }
             if (Input.GetMouseButtonDown(1))
             {
-
+                road.RemoveSpawner(road.GetClickedRoadEnd(Camera.main.ScreenToWorldPoint(_CurrentMousePos)));
             }
         }
-
     }
     private void PlaceEnd()
     {
+        Road road = IsTargetingRoadEnd();
 
+        if (road)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                GameObject end = Instantiate(_EndBP);
+                if (!road.ConnectEnd(end, road.GetClickedRoadEnd(Camera.main.ScreenToWorldPoint(_CurrentMousePos))))
+                    Destroy(end);
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                road.RemoveEnd(road.GetClickedRoadEnd(Camera.main.ScreenToWorldPoint(_CurrentMousePos)));
+            }
+        }
     }
 
     //ui functions
@@ -236,6 +262,9 @@ public class RoadPlacement : MonoBehaviour
                 break;
             case "spawn":
                 _State = 1;
+                break;
+            case "end":
+                _State = 2;
                 break;
             default:
                 _State = -1;

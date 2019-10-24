@@ -21,6 +21,9 @@ public class Crossroad : RoadStructure
     List<Node> _BeginNodes = new List<Node>();
     List<Node> _EndNodes = new List<Node>();
 
+    [SerializeField]
+    public int _NrOfSteps = 10;
+
     public void ConnectRoad(EndPoint roadEnd)
     {
         if (_ConnectedRoads.Count < 4)
@@ -28,7 +31,6 @@ public class Crossroad : RoadStructure
             _ConnectedRoads.Add(roadEnd);
             roadEnd._Collider.enabled = false;
             roadEnd.crossroad = this;
-            CalculateNetwork();
         }
     }
     public void DisconnectRoad(EndPoint roadEnd)
@@ -36,7 +38,6 @@ public class Crossroad : RoadStructure
         _ConnectedRoads.Remove(roadEnd);
         roadEnd._Collider.enabled = true;
         roadEnd.crossroad = null;
-        CalculateNetwork();
         if (_ConnectedRoads.Count == 1)
         {
             _ConnectedRoads[0].crossroad = null;
@@ -228,6 +229,7 @@ public class Crossroad : RoadStructure
         {
             link.UpdateNodes(true);
         }
+        CalculateNetwork();
     }
     private void CreateTriangle(float roadWidth)
     {
@@ -350,8 +352,43 @@ public class Crossroad : RoadStructure
                 AddLink(link);
 
                 _EndNodes[j].AddLink(link, 0);
+
+                if (_BeginNodes[i].parent._WorldDirection != -_EndNodes[j].parent._WorldDirection)
+                    link.path = CalculatePath(_BeginNodes[i].position, CalculateIntersectPoint(_BeginNodes[i].position, -_BeginNodes[i].parent._WorldDirection, _EndNodes[j].position, -_EndNodes[j].parent._WorldDirection), _EndNodes[j].position);
             }
         }
+    }
+    private List<Vector2> CalculatePath(Vector2 pos3, Vector2 pos2, Vector2 pos1)
+    {
+        List<Vector2> path = new List<Vector2>();
+        float stepSize = 1.0f / _NrOfSteps;
+        for (int i = 0; i <= _NrOfSteps; ++i)
+        {
+            Vector2 Lerp1 = Vector2.Lerp(pos1, pos2, stepSize * i);
+            Vector2 Lerp2 = Vector2.Lerp(pos2, pos3, stepSize * i);
+
+
+            path.Add(Vector2.Lerp(Lerp1, Lerp2, stepSize * i));
+        }
+        return path;
+    }
+    private Vector2 CalculateIntersectPoint(Vector2 A1, Vector2 dir1, Vector2 B1, Vector2 dir2)
+    {
+        //https://blog.dakwamine.fr/?p=1943
+        Vector2 A2 = A1 + dir1 * _Distance * 2;
+        Vector2 B2 = B1 + dir2 * _Distance * 2;
+
+        float tmp = (B2.x - B1.x) * (A2.y - A1.y) - (B2.y - B1.y) * (A2.x - A1.x);
+
+        if(tmp != 0)
+        {
+            float mu = ((A1.x - B1.x) * (A2.y - A1.y) - (A1.y - B1.y) * (A2.x - A1.x)) / tmp;
+            return new Vector2(
+                B1.x + (B2.x - B1.x) * mu,
+                B1.y + (B2.y - B1.y) * mu
+            );
+        }
+        return Vector2.zero;
     }
 
     private bool VehicleOnCrossRoad = false;
@@ -371,6 +408,7 @@ public class Crossroad : RoadStructure
     public void LeaveCrossRoad()
     {
         VehicleOnCrossRoad = false;
+        _Vehicle = null;
     }
 
     private void Start()
