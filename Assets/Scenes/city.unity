@@ -243,6 +243,7 @@ MonoBehaviour:
   - {fileID: 2101687367}
   - {fileID: 505563210}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &20466492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,6 +547,7 @@ MonoBehaviour:
   - {fileID: 260578553}
   - {fileID: 1266174736}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &56013867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,6 +1145,7 @@ MonoBehaviour:
   - {fileID: 1614204723}
   - {fileID: 1904100424}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &92885295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1446,6 +1449,7 @@ MonoBehaviour:
   - {fileID: 1596601572}
   - {fileID: 1883177619}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &118050957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1732,6 +1736,7 @@ MonoBehaviour:
   - {fileID: 866572633}
   - {fileID: 421012660}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &131912671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2931,6 +2936,7 @@ MonoBehaviour:
   - {fileID: 866572630}
   - {fileID: 1958941137}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &284969510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3278,6 +3284,7 @@ MonoBehaviour:
   - {fileID: 1614204726}
   - {fileID: 1255341828}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &338855149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3855,6 +3862,7 @@ MonoBehaviour:
   - {fileID: 1986241344}
   - {fileID: 1855110865}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &372884036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4094,6 +4102,7 @@ MonoBehaviour:
   - {fileID: 1385734565}
   - {fileID: 1266174733}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &409667947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4605,6 +4614,7 @@ MonoBehaviour:
   - {fileID: 1763411073}
   - {fileID: 1299775861}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &432079627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4951,6 +4961,7 @@ MonoBehaviour:
   - {fileID: 240266854}
   - {fileID: 1986241347}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &471719429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6593,6 +6604,7 @@ MonoBehaviour:
   - {fileID: 491469774}
   - {fileID: 500667815}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &544953888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6876,6 +6888,7 @@ MonoBehaviour:
   - {fileID: 500667812}
   - {fileID: 797494301}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &564758600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7726,6 +7739,7 @@ MonoBehaviour:
   - {fileID: 491469771}
   - {fileID: 480272265}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &655556056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9270,6 +9284,7 @@ MonoBehaviour:
   - {fileID: 1883177616}
   - {fileID: 1904100421}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &1019134556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11241,6 +11256,7 @@ MonoBehaviour:
   - {fileID: 2094933978}
   - {fileID: 1360340146}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &1273503667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12152,6 +12168,7 @@ MonoBehaviour:
   - {fileID: 575803396}
   - {fileID: 1383886802}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &1376186291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12999,6 +13016,7 @@ MonoBehaviour:
   - {fileID: 1447735567}
   - {fileID: 575803399}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &1411534312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13302,6 +13320,7 @@ MonoBehaviour:
   - {fileID: 480272262}
   - {fileID: 2101687373}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &1445629225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14607,6 +14626,7 @@ MonoBehaviour:
   - {fileID: 260578550}
   - {fileID: 505563213}
   _DrivingSpeed: 7.5
+  _Vehicle: {fileID: 0}
 --- !u!114 &1688850843
 MonoBehaviour:
   m_ObjectHideFlags: 0

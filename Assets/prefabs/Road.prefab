@@ -207,13 +207,14 @@ MonoBehaviour:
     type: 3}
   _CrossRoadBP: {fileID: 799992468070128993, guid: 083ad0065ebb22f44a9a451f9d55045f,
     type: 3}
-  _NrOfSteps: 25
+  _NrOfSteps: 15
   nrOfLanes: 2
   _EndPoints:
   - {fileID: 2641271596474975947}
   - {fileID: 2641271596474975956}
   _BeginToEnd: {x: 0, y: 0}
   bezHandleMul: 0.15
+  _DrawFlow: 0
 --- !u!114 &1123474187806563821
 MonoBehaviour:
   m_ObjectHideFlags: 0
