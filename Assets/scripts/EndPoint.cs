@@ -47,6 +47,12 @@ public class EndPoint : MonoBehaviour
         if (_Collider)
             _Collider.offset = new Vector2(_LocalDirection * (Parent._BeginToEnd.magnitude / 2), 0);
 
+        if (_ConnectedSpawner)
+            _ConnectedSpawner.transform.localPosition = (Vector3)_LaneBeginPoint.position + Vector3.back * 0.05f - transform.position;
+
+        if (_ConnectedEnd)
+            _ConnectedEnd.transform.localPosition = (Vector3)_LaneEndPoint.position + Vector3.back * 0.05f - transform.position;
+
         if (Parent && updateParent)
             Parent.UpdateRoad();
     }

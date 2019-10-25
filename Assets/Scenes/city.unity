@@ -166,6 +166,7 @@ MonoBehaviour:
   - {fileID: 505563206}
   - {fileID: 482273503}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &20466488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +187,7 @@ MonoBehaviour:
   - {fileID: 482273509}
   - {fileID: 505563207}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &20466489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +208,7 @@ MonoBehaviour:
   - {fileID: 2101687366}
   - {fileID: 482273503}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &20466490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +229,7 @@ MonoBehaviour:
   - {fileID: 2101687366}
   - {fileID: 505563207}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &20466491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +247,7 @@ MonoBehaviour:
   - {fileID: 2101687367}
   - {fileID: 505563210}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &20466492
 MonoBehaviour:
@@ -264,6 +269,7 @@ MonoBehaviour:
   - {fileID: 482273509}
   - {fileID: 2101687368}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &20466493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +290,7 @@ MonoBehaviour:
   - {fileID: 505563206}
   - {fileID: 2101687368}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &20466494
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -301,7 +308,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -470,6 +477,7 @@ MonoBehaviour:
   - {fileID: 1140290590}
   - {fileID: 1266174727}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &56013863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +498,7 @@ MonoBehaviour:
   - {fileID: 1266174732}
   - {fileID: 260578544}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &56013864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +519,7 @@ MonoBehaviour:
   - {fileID: 260578549}
   - {fileID: 1266174727}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &56013865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,6 +540,7 @@ MonoBehaviour:
   - {fileID: 260578549}
   - {fileID: 1140290591}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &56013866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +558,7 @@ MonoBehaviour:
   - {fileID: 260578553}
   - {fileID: 1266174736}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &56013867
 MonoBehaviour:
@@ -568,6 +580,7 @@ MonoBehaviour:
   - {fileID: 1266174732}
   - {fileID: 1140290591}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &56013868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +601,7 @@ MonoBehaviour:
   - {fileID: 1140290590}
   - {fileID: 260578544}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &56013869
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -605,7 +619,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -728,6 +742,7 @@ MonoBehaviour:
   - {fileID: 59629066}
   - {fileID: 59629068}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &59629068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,6 +796,7 @@ MonoBehaviour:
   - {fileID: 59629069}
   - {fileID: 59629071}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &59629071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +835,8 @@ MonoBehaviour:
   _Collider: {fileID: 2131603179}
   _LaneEndPoint: {fileID: 59629068}
   _LaneBeginPoint: {fileID: 59629069}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &59629073
 Transform:
   m_ObjectHideFlags: 0
@@ -878,6 +896,8 @@ MonoBehaviour:
   _Collider: {fileID: 2131603180}
   _LaneEndPoint: {fileID: 59629071}
   _LaneBeginPoint: {fileID: 59629066}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &59629076
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1048,6 +1068,7 @@ MonoBehaviour:
   - {fileID: 1614204719}
   - {fileID: 1904100415}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &92885290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1068,6 +1089,7 @@ MonoBehaviour:
   - {fileID: 1385734558}
   - {fileID: 1904100415}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &92885291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,6 +1110,7 @@ MonoBehaviour:
   - {fileID: 1385734558}
   - {fileID: 1614204720}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &92885292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,6 +1131,7 @@ MonoBehaviour:
   - {fileID: 1904100420}
   - {fileID: 1614204720}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &92885293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,6 +1152,7 @@ MonoBehaviour:
   - {fileID: 1904100420}
   - {fileID: 1385734559}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &92885294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1145,6 +1170,7 @@ MonoBehaviour:
   - {fileID: 1614204723}
   - {fileID: 1904100424}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &92885295
 MonoBehaviour:
@@ -1166,6 +1192,7 @@ MonoBehaviour:
   - {fileID: 1614204719}
   - {fileID: 1385734559}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &92885296
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1183,7 +1210,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1352,6 +1379,7 @@ MonoBehaviour:
   - {fileID: 59629068}
   - {fileID: 1883177610}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &118050952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1372,6 +1400,7 @@ MonoBehaviour:
   - {fileID: 1883177615}
   - {fileID: 59629069}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &118050953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1392,6 +1421,7 @@ MonoBehaviour:
   - {fileID: 1883177615}
   - {fileID: 1596601563}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &118050954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1412,6 +1442,7 @@ MonoBehaviour:
   - {fileID: 1596601569}
   - {fileID: 59629069}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &118050955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1432,6 +1463,7 @@ MonoBehaviour:
   - {fileID: 1596601569}
   - {fileID: 1883177610}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &118050956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1449,6 +1481,7 @@ MonoBehaviour:
   - {fileID: 1596601572}
   - {fileID: 1883177619}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &118050957
 MonoBehaviour:
@@ -1470,6 +1503,7 @@ MonoBehaviour:
   - {fileID: 59629068}
   - {fileID: 1596601563}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &118050958
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1487,7 +1521,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1598,6 +1632,7 @@ MonoBehaviour:
   - {fileID: 1016762808}
   - {fileID: 866572624}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &131912664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1618,6 +1653,7 @@ MonoBehaviour:
   - {fileID: 866572629}
   - {fileID: 1016762809}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &131912665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1638,6 +1674,7 @@ MonoBehaviour:
   - {fileID: 866572629}
   - {fileID: 568736038}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &131912666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1658,6 +1695,7 @@ MonoBehaviour:
   - {fileID: 866572629}
   - {fileID: 421012651}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &131912667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1678,6 +1716,7 @@ MonoBehaviour:
   - {fileID: 421012657}
   - {fileID: 866572624}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &131912668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,6 +1737,7 @@ MonoBehaviour:
   - {fileID: 421012657}
   - {fileID: 1016762809}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &131912669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1718,6 +1758,7 @@ MonoBehaviour:
   - {fileID: 421012657}
   - {fileID: 568736038}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &131912670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1736,6 +1777,7 @@ MonoBehaviour:
   - {fileID: 866572633}
   - {fileID: 421012660}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &131912671
 MonoBehaviour:
@@ -1757,6 +1799,7 @@ MonoBehaviour:
   - {fileID: 1016762808}
   - {fileID: 568736038}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &131912672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1777,6 +1820,7 @@ MonoBehaviour:
   - {fileID: 1016762808}
   - {fileID: 421012651}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &131912673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1797,6 +1841,7 @@ MonoBehaviour:
   - {fileID: 568736039}
   - {fileID: 866572624}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &131912674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1817,6 +1862,7 @@ MonoBehaviour:
   - {fileID: 568736039}
   - {fileID: 1016762809}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &131912675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1837,6 +1883,7 @@ MonoBehaviour:
   - {fileID: 568736039}
   - {fileID: 421012651}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &131912676
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1854,7 +1901,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1977,6 +2024,7 @@ MonoBehaviour:
   - {fileID: 156913492}
   - {fileID: 156913494}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &156913494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2012,6 +2060,8 @@ MonoBehaviour:
   _Collider: {fileID: 731616557}
   _LaneEndPoint: {fileID: 156913494}
   _LaneBeginPoint: {fileID: 156913496}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &156913496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2048,6 +2098,7 @@ MonoBehaviour:
   - {fileID: 156913496}
   - {fileID: 156913498}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &156913498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2124,6 +2175,8 @@ MonoBehaviour:
   _Collider: {fileID: 731616558}
   _LaneEndPoint: {fileID: 156913498}
   _LaneBeginPoint: {fileID: 156913492}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &156913502
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2312,6 +2365,7 @@ MonoBehaviour:
   - {fileID: 240266845}
   - {fileID: 240266847}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &240266847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2347,6 +2401,8 @@ MonoBehaviour:
   _Collider: {fileID: 367829446}
   _LaneEndPoint: {fileID: 240266847}
   _LaneBeginPoint: {fileID: 240266849}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &240266849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2383,6 +2439,7 @@ MonoBehaviour:
   - {fileID: 240266849}
   - {fileID: 240266851}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &240266851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2460,6 +2517,8 @@ MonoBehaviour:
   _Collider: {fileID: 367829447}
   _LaneEndPoint: {fileID: 240266851}
   _LaneBeginPoint: {fileID: 240266845}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &240266855
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2584,6 +2643,7 @@ MonoBehaviour:
   - {fileID: 260578544}
   - {fileID: 260578546}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &260578546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2637,6 +2697,7 @@ MonoBehaviour:
   - {fileID: 260578547}
   - {fileID: 260578549}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &260578549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2674,6 +2735,8 @@ MonoBehaviour:
   _Collider: {fileID: 1241750549}
   _LaneEndPoint: {fileID: 260578546}
   _LaneBeginPoint: {fileID: 260578547}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &260578551
 Transform:
   m_ObjectHideFlags: 0
@@ -2733,6 +2796,8 @@ MonoBehaviour:
   _Collider: {fileID: 1241750550}
   _LaneEndPoint: {fileID: 260578549}
   _LaneBeginPoint: {fileID: 260578544}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &260578554
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2839,6 +2904,7 @@ MonoBehaviour:
   - {fileID: 866572626}
   - {fileID: 1958941128}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &284969505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2859,6 +2925,7 @@ MonoBehaviour:
   - {fileID: 1958941133}
   - {fileID: 866572627}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &284969506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2879,6 +2946,7 @@ MonoBehaviour:
   - {fileID: 1958941133}
   - {fileID: 156913492}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &284969507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2899,6 +2967,7 @@ MonoBehaviour:
   - {fileID: 156913498}
   - {fileID: 1958941128}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &284969508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2919,6 +2988,7 @@ MonoBehaviour:
   - {fileID: 156913498}
   - {fileID: 866572627}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &284969509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2936,6 +3006,7 @@ MonoBehaviour:
   - {fileID: 866572630}
   - {fileID: 1958941137}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &284969510
 MonoBehaviour:
@@ -2957,6 +3028,7 @@ MonoBehaviour:
   - {fileID: 866572626}
   - {fileID: 156913492}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &284969511
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2974,7 +3046,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3207,6 +3279,7 @@ MonoBehaviour:
   - {fileID: 1958941130}
   - {fileID: 1614204717}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &338855145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3227,6 +3300,7 @@ MonoBehaviour:
   - {fileID: 1614204722}
   - {fileID: 1958941131}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &338855146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3247,6 +3321,7 @@ MonoBehaviour:
   - {fileID: 1255341827}
   - {fileID: 1614204717}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &338855147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3267,6 +3342,7 @@ MonoBehaviour:
   - {fileID: 1255341827}
   - {fileID: 1958941131}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &338855148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3284,6 +3360,7 @@ MonoBehaviour:
   - {fileID: 1614204726}
   - {fileID: 1255341828}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &338855149
 MonoBehaviour:
@@ -3305,6 +3382,7 @@ MonoBehaviour:
   - {fileID: 1614204722}
   - {fileID: 1255341829}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &338855150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3325,6 +3403,7 @@ MonoBehaviour:
   - {fileID: 1958941130}
   - {fileID: 1255341829}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &338855151
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3342,7 +3421,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3465,6 +3544,7 @@ MonoBehaviour:
   - {fileID: 352293446}
   - {fileID: 352293448}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &352293448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3519,6 +3599,7 @@ MonoBehaviour:
   - {fileID: 352293449}
   - {fileID: 352293451}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &352293451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3556,6 +3637,8 @@ MonoBehaviour:
   _Collider: {fileID: 311907478}
   _LaneEndPoint: {fileID: 352293448}
   _LaneBeginPoint: {fileID: 352293449}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &352293453
 Transform:
   m_ObjectHideFlags: 0
@@ -3615,6 +3698,8 @@ MonoBehaviour:
   _Collider: {fileID: 311907479}
   _LaneEndPoint: {fileID: 352293451}
   _LaneBeginPoint: {fileID: 352293446}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &352293456
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3785,6 +3870,7 @@ MonoBehaviour:
   - {fileID: 1986241340}
   - {fileID: 1855110856}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &372884032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3805,6 +3891,7 @@ MonoBehaviour:
   - {fileID: 1855110862}
   - {fileID: 1140290588}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &372884033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3825,6 +3912,7 @@ MonoBehaviour:
   - {fileID: 1140290593}
   - {fileID: 1855110856}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &372884034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3845,6 +3933,7 @@ MonoBehaviour:
   - {fileID: 1140290593}
   - {fileID: 1986241341}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &372884035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3862,6 +3951,7 @@ MonoBehaviour:
   - {fileID: 1986241344}
   - {fileID: 1855110865}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &372884036
 MonoBehaviour:
@@ -3883,6 +3973,7 @@ MonoBehaviour:
   - {fileID: 1855110862}
   - {fileID: 1986241341}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &372884037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3903,6 +3994,7 @@ MonoBehaviour:
   - {fileID: 1986241340}
   - {fileID: 1140290588}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &372884038
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3920,7 +4012,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4025,6 +4117,7 @@ MonoBehaviour:
   - {fileID: 1266174729}
   - {fileID: 1385734556}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &409667943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4045,6 +4138,7 @@ MonoBehaviour:
   - {fileID: 1385734561}
   - {fileID: 1266174730}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &409667944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4065,6 +4159,7 @@ MonoBehaviour:
   - {fileID: 2094933971}
   - {fileID: 1385734556}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &409667945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4085,6 +4180,7 @@ MonoBehaviour:
   - {fileID: 2094933971}
   - {fileID: 1266174730}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &409667946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4102,6 +4198,7 @@ MonoBehaviour:
   - {fileID: 1385734565}
   - {fileID: 1266174733}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &409667947
 MonoBehaviour:
@@ -4123,6 +4220,7 @@ MonoBehaviour:
   - {fileID: 1385734561}
   - {fileID: 2094933973}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &409667948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4143,6 +4241,7 @@ MonoBehaviour:
   - {fileID: 1266174729}
   - {fileID: 2094933973}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &409667949
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4160,7 +4259,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4283,6 +4382,7 @@ MonoBehaviour:
   - {fileID: 421012651}
   - {fileID: 421012653}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &421012653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4318,6 +4418,8 @@ MonoBehaviour:
   _Collider: {fileID: 1899605731}
   _LaneEndPoint: {fileID: 421012653}
   _LaneBeginPoint: {fileID: 421012655}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &421012655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4354,6 +4456,7 @@ MonoBehaviour:
   - {fileID: 421012655}
   - {fileID: 421012657}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &421012657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4431,6 +4534,8 @@ MonoBehaviour:
   _Collider: {fileID: 1899605732}
   _LaneEndPoint: {fileID: 421012657}
   _LaneBeginPoint: {fileID: 421012651}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &421012661
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4537,6 +4642,7 @@ MonoBehaviour:
   - {fileID: 797494294}
   - {fileID: 1299775852}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &432079623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4557,6 +4663,7 @@ MonoBehaviour:
   - {fileID: 1299775858}
   - {fileID: 797494295}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &432079624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4577,6 +4684,7 @@ MonoBehaviour:
   - {fileID: 1763411072}
   - {fileID: 1299775852}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &432079625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4597,6 +4705,7 @@ MonoBehaviour:
   - {fileID: 1763411072}
   - {fileID: 797494295}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &432079626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4614,6 +4723,7 @@ MonoBehaviour:
   - {fileID: 1763411073}
   - {fileID: 1299775861}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &432079627
 MonoBehaviour:
@@ -4635,6 +4745,7 @@ MonoBehaviour:
   - {fileID: 1299775858}
   - {fileID: 1763411074}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &432079628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4655,6 +4766,7 @@ MonoBehaviour:
   - {fileID: 797494294}
   - {fileID: 1763411074}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &432079629
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4672,7 +4784,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4783,6 +4895,7 @@ MonoBehaviour:
   - {fileID: 352293448}
   - {fileID: 59629066}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &471719420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4803,6 +4916,7 @@ MonoBehaviour:
   - {fileID: 59629071}
   - {fileID: 352293449}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &471719421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4823,6 +4937,7 @@ MonoBehaviour:
   - {fileID: 59629071}
   - {fileID: 1986241338}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &471719422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4843,6 +4958,7 @@ MonoBehaviour:
   - {fileID: 1986241343}
   - {fileID: 352293449}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &471719423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4863,6 +4979,7 @@ MonoBehaviour:
   - {fileID: 1986241343}
   - {fileID: 59629066}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &471719424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4883,6 +5000,7 @@ MonoBehaviour:
   - {fileID: 1986241343}
   - {fileID: 240266845}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &471719425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4903,6 +5021,7 @@ MonoBehaviour:
   - {fileID: 240266851}
   - {fileID: 352293449}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &471719426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4923,6 +5042,7 @@ MonoBehaviour:
   - {fileID: 240266851}
   - {fileID: 59629066}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &471719427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4943,6 +5063,7 @@ MonoBehaviour:
   - {fileID: 240266851}
   - {fileID: 1986241338}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &471719428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4961,6 +5082,7 @@ MonoBehaviour:
   - {fileID: 240266854}
   - {fileID: 1986241347}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &471719429
 MonoBehaviour:
@@ -4982,6 +5104,7 @@ MonoBehaviour:
   - {fileID: 59629071}
   - {fileID: 240266845}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &471719430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5002,6 +5125,7 @@ MonoBehaviour:
   - {fileID: 352293448}
   - {fileID: 1986241338}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &471719431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5022,6 +5146,7 @@ MonoBehaviour:
   - {fileID: 352293448}
   - {fileID: 240266845}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &471719432
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5039,7 +5164,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5162,6 +5287,7 @@ MonoBehaviour:
   - {fileID: 480272256}
   - {fileID: 480272258}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &480272258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5215,6 +5341,7 @@ MonoBehaviour:
   - {fileID: 480272259}
   - {fileID: 480272261}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &480272261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5252,6 +5379,8 @@ MonoBehaviour:
   _Collider: {fileID: 112110803}
   _LaneEndPoint: {fileID: 480272258}
   _LaneBeginPoint: {fileID: 480272259}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &480272263
 Transform:
   m_ObjectHideFlags: 0
@@ -5311,6 +5440,8 @@ MonoBehaviour:
   _Collider: {fileID: 112110804}
   _LaneEndPoint: {fileID: 480272261}
   _LaneBeginPoint: {fileID: 480272256}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &480272266
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5435,6 +5566,7 @@ MonoBehaviour:
   - {fileID: 482273503}
   - {fileID: 482273505}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &482273505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5470,6 +5602,8 @@ MonoBehaviour:
   _Collider: {fileID: 2047651693}
   _LaneEndPoint: {fileID: 482273505}
   _LaneBeginPoint: {fileID: 482273507}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &482273507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5506,6 +5640,7 @@ MonoBehaviour:
   - {fileID: 482273507}
   - {fileID: 482273509}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &482273509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5582,6 +5717,8 @@ MonoBehaviour:
   _Collider: {fileID: 2047651694}
   _LaneEndPoint: {fileID: 482273509}
   _LaneBeginPoint: {fileID: 482273503}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &482273513
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5706,6 +5843,7 @@ MonoBehaviour:
   - {fileID: 491469765}
   - {fileID: 491469767}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &491469767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5759,6 +5897,7 @@ MonoBehaviour:
   - {fileID: 491469768}
   - {fileID: 491469770}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &491469770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5796,6 +5935,8 @@ MonoBehaviour:
   _Collider: {fileID: 1105124962}
   _LaneEndPoint: {fileID: 491469767}
   _LaneBeginPoint: {fileID: 491469768}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &491469772
 Transform:
   m_ObjectHideFlags: 0
@@ -5855,6 +5996,8 @@ MonoBehaviour:
   _Collider: {fileID: 1105124963}
   _LaneEndPoint: {fileID: 491469770}
   _LaneBeginPoint: {fileID: 491469765}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &491469775
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5979,6 +6122,7 @@ MonoBehaviour:
   - {fileID: 500667806}
   - {fileID: 500667808}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &500667808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6032,6 +6176,7 @@ MonoBehaviour:
   - {fileID: 500667809}
   - {fileID: 500667811}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &500667811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6069,6 +6214,8 @@ MonoBehaviour:
   _Collider: {fileID: 1239042676}
   _LaneEndPoint: {fileID: 500667808}
   _LaneBeginPoint: {fileID: 500667809}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &500667813
 Transform:
   m_ObjectHideFlags: 0
@@ -6128,6 +6275,8 @@ MonoBehaviour:
   _Collider: {fileID: 1239042677}
   _LaneEndPoint: {fileID: 500667811}
   _LaneBeginPoint: {fileID: 500667806}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &500667816
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6252,6 +6401,7 @@ MonoBehaviour:
   - {fileID: 505563204}
   - {fileID: 505563206}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &505563206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6305,6 +6455,7 @@ MonoBehaviour:
   - {fileID: 505563207}
   - {fileID: 505563209}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &505563209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6342,6 +6493,8 @@ MonoBehaviour:
   _Collider: {fileID: 1126492041}
   _LaneEndPoint: {fileID: 505563206}
   _LaneBeginPoint: {fileID: 505563207}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &505563211
 Transform:
   m_ObjectHideFlags: 0
@@ -6401,6 +6554,8 @@ MonoBehaviour:
   _Collider: {fileID: 1126492042}
   _LaneEndPoint: {fileID: 505563209}
   _LaneBeginPoint: {fileID: 505563204}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &505563214
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6507,6 +6662,7 @@ MonoBehaviour:
   - {fileID: 1117379604}
   - {fileID: 500667806}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &544953883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6527,6 +6683,7 @@ MonoBehaviour:
   - {fileID: 500667811}
   - {fileID: 1117379605}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &544953884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6547,6 +6704,7 @@ MonoBehaviour:
   - {fileID: 500667811}
   - {fileID: 491469765}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &544953885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6567,6 +6725,7 @@ MonoBehaviour:
   - {fileID: 491469770}
   - {fileID: 1117379605}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &544953886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6587,6 +6746,7 @@ MonoBehaviour:
   - {fileID: 491469770}
   - {fileID: 500667806}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &544953887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6604,6 +6764,7 @@ MonoBehaviour:
   - {fileID: 491469774}
   - {fileID: 500667815}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &544953888
 MonoBehaviour:
@@ -6625,6 +6786,7 @@ MonoBehaviour:
   - {fileID: 1117379604}
   - {fileID: 491469765}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &544953889
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6642,7 +6804,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6811,6 +6973,7 @@ MonoBehaviour:
   - {fileID: 500667808}
   - {fileID: 797494292}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &564758596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6831,6 +6994,7 @@ MonoBehaviour:
   - {fileID: 797494297}
   - {fileID: 1360340140}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &564758597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6851,6 +7015,7 @@ MonoBehaviour:
   - {fileID: 1360340145}
   - {fileID: 797494292}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &564758598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6871,6 +7036,7 @@ MonoBehaviour:
   - {fileID: 1360340145}
   - {fileID: 500667809}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &564758599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6888,6 +7054,7 @@ MonoBehaviour:
   - {fileID: 500667812}
   - {fileID: 797494301}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &564758600
 MonoBehaviour:
@@ -6909,6 +7076,7 @@ MonoBehaviour:
   - {fileID: 797494297}
   - {fileID: 500667809}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &564758601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6929,6 +7097,7 @@ MonoBehaviour:
   - {fileID: 500667808}
   - {fileID: 1360340140}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &564758602
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6946,7 +7115,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7053,6 +7222,7 @@ MonoBehaviour:
   - {fileID: 568736036}
   - {fileID: 568736039}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &568736034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7073,6 +7243,7 @@ MonoBehaviour:
   - {fileID: 568736038}
   - {fileID: 568736037}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!64 &568736035
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7198,6 +7369,8 @@ MonoBehaviour:
   _Collider: {fileID: 1424909578}
   _LaneEndPoint: {fileID: 568736037}
   _LaneBeginPoint: {fileID: 568736036}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &568736042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7218,6 +7391,8 @@ MonoBehaviour:
   _Collider: {fileID: 1424909579}
   _LaneEndPoint: {fileID: 568736039}
   _LaneBeginPoint: {fileID: 568736038}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!23 &568736043
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7343,6 +7518,7 @@ MonoBehaviour:
   - {fileID: 575803390}
   - {fileID: 575803392}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &575803392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7396,6 +7572,7 @@ MonoBehaviour:
   - {fileID: 575803393}
   - {fileID: 575803395}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &575803395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7433,6 +7610,8 @@ MonoBehaviour:
   _Collider: {fileID: 44890036}
   _LaneEndPoint: {fileID: 575803392}
   _LaneBeginPoint: {fileID: 575803393}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &575803397
 Transform:
   m_ObjectHideFlags: 0
@@ -7492,6 +7671,8 @@ MonoBehaviour:
   _Collider: {fileID: 44890037}
   _LaneEndPoint: {fileID: 575803395}
   _LaneBeginPoint: {fileID: 575803390}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &575803400
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7662,6 +7843,7 @@ MonoBehaviour:
   - {fileID: 491469767}
   - {fileID: 480272256}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &655556052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7682,6 +7864,7 @@ MonoBehaviour:
   - {fileID: 480272261}
   - {fileID: 1763411070}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &655556053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7702,6 +7885,7 @@ MonoBehaviour:
   - {fileID: 1763411076}
   - {fileID: 480272256}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &655556054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7722,6 +7906,7 @@ MonoBehaviour:
   - {fileID: 1763411076}
   - {fileID: 491469768}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &655556055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7739,6 +7924,7 @@ MonoBehaviour:
   - {fileID: 491469771}
   - {fileID: 480272265}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &655556056
 MonoBehaviour:
@@ -7760,6 +7946,7 @@ MonoBehaviour:
   - {fileID: 480272261}
   - {fileID: 491469768}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &655556057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7780,6 +7967,7 @@ MonoBehaviour:
   - {fileID: 491469767}
   - {fileID: 1763411070}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &655556058
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7797,7 +7985,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8048,6 +8236,7 @@ MonoBehaviour:
   - {fileID: 797494292}
   - {fileID: 797494294}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &797494294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8101,6 +8290,7 @@ MonoBehaviour:
   - {fileID: 797494295}
   - {fileID: 797494297}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &797494297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8138,6 +8328,8 @@ MonoBehaviour:
   _Collider: {fileID: 286250840}
   _LaneEndPoint: {fileID: 797494294}
   _LaneBeginPoint: {fileID: 797494295}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &797494299
 Transform:
   m_ObjectHideFlags: 0
@@ -8197,6 +8389,8 @@ MonoBehaviour:
   _Collider: {fileID: 286250841}
   _LaneEndPoint: {fileID: 797494297}
   _LaneBeginPoint: {fileID: 797494292}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &797494302
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8479,6 +8673,7 @@ MonoBehaviour:
   - {fileID: 866572624}
   - {fileID: 866572626}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &866572626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8532,6 +8727,7 @@ MonoBehaviour:
   - {fileID: 866572627}
   - {fileID: 866572629}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &866572629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8570,6 +8766,8 @@ MonoBehaviour:
   _Collider: {fileID: 61098886}
   _LaneEndPoint: {fileID: 866572626}
   _LaneBeginPoint: {fileID: 866572627}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &866572631
 Transform:
   m_ObjectHideFlags: 0
@@ -8629,6 +8827,8 @@ MonoBehaviour:
   _Collider: {fileID: 61098887}
   _LaneEndPoint: {fileID: 866572629}
   _LaneBeginPoint: {fileID: 866572624}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &866572634
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8931,6 +9131,7 @@ MonoBehaviour:
   - {fileID: 1016762806}
   - {fileID: 1016762808}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1016762808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8985,6 +9186,7 @@ MonoBehaviour:
   - {fileID: 1016762809}
   - {fileID: 1016762811}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1016762811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9022,6 +9224,8 @@ MonoBehaviour:
   _Collider: {fileID: 1104097121}
   _LaneEndPoint: {fileID: 1016762808}
   _LaneBeginPoint: {fileID: 1016762809}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &1016762813
 Transform:
   m_ObjectHideFlags: 0
@@ -9081,6 +9285,8 @@ MonoBehaviour:
   _Collider: {fileID: 1104097122}
   _LaneEndPoint: {fileID: 1016762811}
   _LaneBeginPoint: {fileID: 1016762806}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1016762816
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9187,6 +9393,7 @@ MonoBehaviour:
   - {fileID: 1883177612}
   - {fileID: 1016762806}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1019134551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9207,6 +9414,7 @@ MonoBehaviour:
   - {fileID: 1904100417}
   - {fileID: 1016762806}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1019134552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9227,6 +9435,7 @@ MonoBehaviour:
   - {fileID: 1904100417}
   - {fileID: 1883177613}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1019134553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9247,6 +9456,7 @@ MonoBehaviour:
   - {fileID: 1016762811}
   - {fileID: 1904100418}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1019134554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9267,6 +9477,7 @@ MonoBehaviour:
   - {fileID: 1016762811}
   - {fileID: 1883177613}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1019134555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9284,6 +9495,7 @@ MonoBehaviour:
   - {fileID: 1883177616}
   - {fileID: 1904100421}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &1019134556
 MonoBehaviour:
@@ -9305,6 +9517,7 @@ MonoBehaviour:
   - {fileID: 1883177612}
   - {fileID: 1904100418}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &1019134557
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9322,7 +9535,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9573,6 +9786,7 @@ MonoBehaviour:
   - {fileID: 1117379602}
   - {fileID: 1117379604}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1117379604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9626,6 +9840,7 @@ MonoBehaviour:
   - {fileID: 1117379605}
   - {fileID: 1117379607}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1117379607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9663,6 +9878,8 @@ MonoBehaviour:
   _Collider: {fileID: 1964624983}
   _LaneEndPoint: {fileID: 1117379604}
   _LaneBeginPoint: {fileID: 1117379605}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &1117379609
 Transform:
   m_ObjectHideFlags: 0
@@ -9722,6 +9939,8 @@ MonoBehaviour:
   _Collider: {fileID: 1964624984}
   _LaneEndPoint: {fileID: 1117379607}
   _LaneBeginPoint: {fileID: 1117379602}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1117379612
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9974,6 +10193,7 @@ MonoBehaviour:
   - {fileID: 1140290588}
   - {fileID: 1140290590}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1140290590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10027,6 +10247,7 @@ MonoBehaviour:
   - {fileID: 1140290591}
   - {fileID: 1140290593}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1140290593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10064,6 +10285,8 @@ MonoBehaviour:
   _Collider: {fileID: 2039355664}
   _LaneEndPoint: {fileID: 1140290590}
   _LaneBeginPoint: {fileID: 1140290591}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &1140290595
 Transform:
   m_ObjectHideFlags: 0
@@ -10123,6 +10346,8 @@ MonoBehaviour:
   _Collider: {fileID: 2039355665}
   _LaneEndPoint: {fileID: 1140290593}
   _LaneBeginPoint: {fileID: 1140290588}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1140290598
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10631,6 +10856,7 @@ MonoBehaviour:
   - {fileID: 1255341825}
   - {fileID: 1255341827}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1255341827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10668,6 +10894,8 @@ MonoBehaviour:
   _Collider: {fileID: 1154844380}
   _LaneEndPoint: {fileID: 1255341827}
   _LaneBeginPoint: {fileID: 1255341829}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &1255341829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10704,6 +10932,7 @@ MonoBehaviour:
   - {fileID: 1255341829}
   - {fileID: 1255341831}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1255341831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10780,6 +11009,8 @@ MonoBehaviour:
   _Collider: {fileID: 1154844381}
   _LaneEndPoint: {fileID: 1255341831}
   _LaneBeginPoint: {fileID: 1255341825}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1255341835
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10904,6 +11135,7 @@ MonoBehaviour:
   - {fileID: 1266174727}
   - {fileID: 1266174729}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1266174729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10957,6 +11189,7 @@ MonoBehaviour:
   - {fileID: 1266174730}
   - {fileID: 1266174732}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1266174732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10994,6 +11227,8 @@ MonoBehaviour:
   _Collider: {fileID: 1380126663}
   _LaneEndPoint: {fileID: 1266174729}
   _LaneBeginPoint: {fileID: 1266174730}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &1266174734
 Transform:
   m_ObjectHideFlags: 0
@@ -11053,6 +11288,8 @@ MonoBehaviour:
   _Collider: {fileID: 1380126664}
   _LaneEndPoint: {fileID: 1266174732}
   _LaneBeginPoint: {fileID: 1266174727}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1266174737
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11159,6 +11396,7 @@ MonoBehaviour:
   - {fileID: 1360340142}
   - {fileID: 2094933969}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1273503662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11179,6 +11417,7 @@ MonoBehaviour:
   - {fileID: 2094933975}
   - {fileID: 1360340143}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1273503663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11199,6 +11438,7 @@ MonoBehaviour:
   - {fileID: 2094933975}
   - {fileID: 1255341825}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1273503664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11219,6 +11459,7 @@ MonoBehaviour:
   - {fileID: 1255341831}
   - {fileID: 2094933969}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1273503665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11239,6 +11480,7 @@ MonoBehaviour:
   - {fileID: 1255341831}
   - {fileID: 1360340143}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1273503666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11256,6 +11498,7 @@ MonoBehaviour:
   - {fileID: 2094933978}
   - {fileID: 1360340146}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &1273503667
 MonoBehaviour:
@@ -11277,6 +11520,7 @@ MonoBehaviour:
   - {fileID: 1360340142}
   - {fileID: 1255341825}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &1273503668
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11294,7 +11538,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11417,6 +11661,7 @@ MonoBehaviour:
   - {fileID: 1299775852}
   - {fileID: 1299775854}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1299775854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11452,6 +11697,8 @@ MonoBehaviour:
   _Collider: {fileID: 619809722}
   _LaneEndPoint: {fileID: 1299775854}
   _LaneBeginPoint: {fileID: 1299775856}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &1299775856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11488,6 +11735,7 @@ MonoBehaviour:
   - {fileID: 1299775856}
   - {fileID: 1299775858}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1299775858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11564,6 +11812,8 @@ MonoBehaviour:
   _Collider: {fileID: 619809723}
   _LaneEndPoint: {fileID: 1299775858}
   _LaneBeginPoint: {fileID: 1299775852}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1299775862
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11816,6 +12066,7 @@ MonoBehaviour:
   - {fileID: 1360340140}
   - {fileID: 1360340142}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1360340142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11869,6 +12120,7 @@ MonoBehaviour:
   - {fileID: 1360340143}
   - {fileID: 1360340145}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1360340145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11906,6 +12158,8 @@ MonoBehaviour:
   _Collider: {fileID: 1149883557}
   _LaneEndPoint: {fileID: 1360340142}
   _LaneBeginPoint: {fileID: 1360340143}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &1360340147
 Transform:
   m_ObjectHideFlags: 0
@@ -11965,6 +12219,8 @@ MonoBehaviour:
   _Collider: {fileID: 1149883558}
   _LaneEndPoint: {fileID: 1360340145}
   _LaneBeginPoint: {fileID: 1360340140}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1360340150
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12071,6 +12327,7 @@ MonoBehaviour:
   - {fileID: 575803392}
   - {fileID: 1383886793}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1376186286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12091,6 +12348,7 @@ MonoBehaviour:
   - {fileID: 1383886799}
   - {fileID: 575803393}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1376186287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12111,6 +12369,7 @@ MonoBehaviour:
   - {fileID: 1383886799}
   - {fileID: 352293446}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1376186288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12131,6 +12390,7 @@ MonoBehaviour:
   - {fileID: 352293451}
   - {fileID: 575803393}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1376186289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12151,6 +12411,7 @@ MonoBehaviour:
   - {fileID: 352293451}
   - {fileID: 1383886793}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1376186290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12168,6 +12429,7 @@ MonoBehaviour:
   - {fileID: 575803396}
   - {fileID: 1383886802}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &1376186291
 MonoBehaviour:
@@ -12189,6 +12451,7 @@ MonoBehaviour:
   - {fileID: 575803392}
   - {fileID: 352293446}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &1376186292
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12206,7 +12469,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12393,6 +12656,7 @@ MonoBehaviour:
   - {fileID: 1383886793}
   - {fileID: 1383886795}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1383886795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12428,6 +12692,8 @@ MonoBehaviour:
   _Collider: {fileID: 1322919686}
   _LaneEndPoint: {fileID: 1383886795}
   _LaneBeginPoint: {fileID: 1383886797}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &1383886797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12464,6 +12730,7 @@ MonoBehaviour:
   - {fileID: 1383886797}
   - {fileID: 1383886799}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1383886799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12540,6 +12807,8 @@ MonoBehaviour:
   _Collider: {fileID: 1322919687}
   _LaneEndPoint: {fileID: 1383886799}
   _LaneBeginPoint: {fileID: 1383886793}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1383886803
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12664,6 +12933,7 @@ MonoBehaviour:
   - {fileID: 1385734556}
   - {fileID: 1385734558}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1385734558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12717,6 +12987,7 @@ MonoBehaviour:
   - {fileID: 1385734559}
   - {fileID: 1385734561}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1385734561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12754,6 +13025,8 @@ MonoBehaviour:
   _Collider: {fileID: 705300355}
   _LaneEndPoint: {fileID: 1385734558}
   _LaneBeginPoint: {fileID: 1385734559}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &1385734563
 Transform:
   m_ObjectHideFlags: 0
@@ -12813,6 +13086,8 @@ MonoBehaviour:
   _Collider: {fileID: 705300356}
   _LaneEndPoint: {fileID: 1385734561}
   _LaneBeginPoint: {fileID: 1385734556}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1385734566
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12919,6 +13194,7 @@ MonoBehaviour:
   - {fileID: 568736037}
   - {fileID: 575803390}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1411534307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12939,6 +13215,7 @@ MonoBehaviour:
   - {fileID: 575803395}
   - {fileID: 568736036}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1411534308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12959,6 +13236,7 @@ MonoBehaviour:
   - {fileID: 575803395}
   - {fileID: 1447735558}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1411534309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12979,6 +13257,7 @@ MonoBehaviour:
   - {fileID: 1447735564}
   - {fileID: 568736036}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1411534310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12999,6 +13278,7 @@ MonoBehaviour:
   - {fileID: 1447735564}
   - {fileID: 575803390}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1411534311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13016,6 +13296,7 @@ MonoBehaviour:
   - {fileID: 1447735567}
   - {fileID: 575803399}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &1411534312
 MonoBehaviour:
@@ -13037,6 +13318,7 @@ MonoBehaviour:
   - {fileID: 568736037}
   - {fileID: 1447735558}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &1411534313
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13054,7 +13336,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13223,6 +13505,7 @@ MonoBehaviour:
   - {fileID: 480272258}
   - {fileID: 2101687364}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1445629220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13243,6 +13526,7 @@ MonoBehaviour:
   - {fileID: 2101687370}
   - {fileID: 480272259}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1445629221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13263,6 +13547,7 @@ MonoBehaviour:
   - {fileID: 2101687370}
   - {fileID: 1481009016}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1445629222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13283,6 +13568,7 @@ MonoBehaviour:
   - {fileID: 1481009022}
   - {fileID: 480272259}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1445629223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13303,6 +13589,7 @@ MonoBehaviour:
   - {fileID: 1481009022}
   - {fileID: 2101687364}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1445629224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13320,6 +13607,7 @@ MonoBehaviour:
   - {fileID: 480272262}
   - {fileID: 2101687373}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &1445629225
 MonoBehaviour:
@@ -13341,6 +13629,7 @@ MonoBehaviour:
   - {fileID: 480272258}
   - {fileID: 1481009016}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &1445629226
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13358,7 +13647,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13481,6 +13770,7 @@ MonoBehaviour:
   - {fileID: 1447735558}
   - {fileID: 1447735560}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1447735560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13516,6 +13806,8 @@ MonoBehaviour:
   _Collider: {fileID: 171043849}
   _LaneEndPoint: {fileID: 1447735560}
   _LaneBeginPoint: {fileID: 1447735562}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &1447735562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13552,6 +13844,7 @@ MonoBehaviour:
   - {fileID: 1447735562}
   - {fileID: 1447735564}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1447735564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13628,6 +13921,8 @@ MonoBehaviour:
   _Collider: {fileID: 171043850}
   _LaneEndPoint: {fileID: 1447735564}
   _LaneBeginPoint: {fileID: 1447735558}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1447735568
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13752,6 +14047,7 @@ MonoBehaviour:
   - {fileID: 1481009016}
   - {fileID: 1481009018}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1481009018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13787,6 +14083,8 @@ MonoBehaviour:
   _Collider: {fileID: 1191424603}
   _LaneEndPoint: {fileID: 1481009018}
   _LaneBeginPoint: {fileID: 1481009020}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &1481009020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13823,6 +14121,7 @@ MonoBehaviour:
   - {fileID: 1481009020}
   - {fileID: 1481009022}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1481009022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13899,6 +14198,8 @@ MonoBehaviour:
   _Collider: {fileID: 1191424604}
   _LaneEndPoint: {fileID: 1481009022}
   _LaneBeginPoint: {fileID: 1481009016}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1481009026
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14023,6 +14324,7 @@ MonoBehaviour:
   - {fileID: 1596601563}
   - {fileID: 1596601565}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1596601565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14058,6 +14360,8 @@ MonoBehaviour:
   _Collider: {fileID: 1235869938}
   _LaneEndPoint: {fileID: 1596601565}
   _LaneBeginPoint: {fileID: 1596601567}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &1596601567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14094,6 +14398,7 @@ MonoBehaviour:
   - {fileID: 1596601567}
   - {fileID: 1596601569}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1596601569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14170,6 +14475,8 @@ MonoBehaviour:
   _Collider: {fileID: 1235869939}
   _LaneEndPoint: {fileID: 1596601569}
   _LaneBeginPoint: {fileID: 1596601563}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1596601573
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14294,6 +14601,7 @@ MonoBehaviour:
   - {fileID: 1614204717}
   - {fileID: 1614204719}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1614204719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14347,6 +14655,7 @@ MonoBehaviour:
   - {fileID: 1614204720}
   - {fileID: 1614204722}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1614204722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14384,6 +14693,8 @@ MonoBehaviour:
   _Collider: {fileID: 1780661271}
   _LaneEndPoint: {fileID: 1614204719}
   _LaneBeginPoint: {fileID: 1614204720}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &1614204724
 Transform:
   m_ObjectHideFlags: 0
@@ -14443,6 +14754,8 @@ MonoBehaviour:
   _Collider: {fileID: 1780661272}
   _LaneEndPoint: {fileID: 1614204722}
   _LaneBeginPoint: {fileID: 1614204717}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1614204727
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14549,6 +14862,7 @@ MonoBehaviour:
   - {fileID: 260578546}
   - {fileID: 505563204}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1688850839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14569,6 +14883,7 @@ MonoBehaviour:
   - {fileID: 505563209}
   - {fileID: 1117379602}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1688850840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14589,6 +14904,7 @@ MonoBehaviour:
   - {fileID: 1117379607}
   - {fileID: 505563204}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1688850841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14609,6 +14925,7 @@ MonoBehaviour:
   - {fileID: 1117379607}
   - {fileID: 260578547}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1688850842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14626,6 +14943,7 @@ MonoBehaviour:
   - {fileID: 260578550}
   - {fileID: 505563213}
   _DrivingSpeed: 7.5
+  _NrOfSteps: 10
   _Vehicle: {fileID: 0}
 --- !u!114 &1688850843
 MonoBehaviour:
@@ -14647,6 +14965,7 @@ MonoBehaviour:
   - {fileID: 505563209}
   - {fileID: 260578547}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!114 &1688850844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14667,6 +14986,7 @@ MonoBehaviour:
   - {fileID: 260578546}
   - {fileID: 1117379602}
   _MaxDrivingSpeed: 5
+  _MaxVehicleCount: 1
 --- !u!23 &1688850845
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14684,7 +15004,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14935,6 +15255,7 @@ MonoBehaviour:
   - {fileID: 1763411070}
   - {fileID: 1763411072}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1763411072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14972,6 +15293,8 @@ MonoBehaviour:
   _Collider: {fileID: 803317242}
   _LaneEndPoint: {fileID: 1763411072}
   _LaneBeginPoint: {fileID: 1763411074}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &1763411074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15008,6 +15331,7 @@ MonoBehaviour:
   - {fileID: 1763411074}
   - {fileID: 1763411076}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1763411076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15084,6 +15408,8 @@ MonoBehaviour:
   _Collider: {fileID: 803317243}
   _LaneEndPoint: {fileID: 1763411076}
   _LaneBeginPoint: {fileID: 1763411070}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1763411080
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15272,6 +15598,7 @@ MonoBehaviour:
   - {fileID: 1855110856}
   - {fileID: 1855110858}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1855110858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15307,6 +15634,8 @@ MonoBehaviour:
   _Collider: {fileID: 545869460}
   _LaneEndPoint: {fileID: 1855110858}
   _LaneBeginPoint: {fileID: 1855110860}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &1855110860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15343,6 +15672,7 @@ MonoBehaviour:
   - {fileID: 1855110860}
   - {fileID: 1855110862}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1855110862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15419,6 +15749,8 @@ MonoBehaviour:
   _Collider: {fileID: 545869461}
   _LaneEndPoint: {fileID: 1855110862}
   _LaneBeginPoint: {fileID: 1855110856}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1855110866
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15543,6 +15875,7 @@ MonoBehaviour:
   - {fileID: 1883177610}
   - {fileID: 1883177612}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1883177612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15596,6 +15929,7 @@ MonoBehaviour:
   - {fileID: 1883177613}
   - {fileID: 1883177615}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1883177615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15633,6 +15967,8 @@ MonoBehaviour:
   _Collider: {fileID: 1357873648}
   _LaneEndPoint: {fileID: 1883177612}
   _LaneBeginPoint: {fileID: 1883177613}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &1883177617
 Transform:
   m_ObjectHideFlags: 0
@@ -15692,6 +16028,8 @@ MonoBehaviour:
   _Collider: {fileID: 1357873649}
   _LaneEndPoint: {fileID: 1883177615}
   _LaneBeginPoint: {fileID: 1883177610}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1883177620
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15880,6 +16218,7 @@ MonoBehaviour:
   - {fileID: 1904100415}
   - {fileID: 1904100417}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1904100417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15933,6 +16272,7 @@ MonoBehaviour:
   - {fileID: 1904100418}
   - {fileID: 1904100420}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1904100420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15970,6 +16310,8 @@ MonoBehaviour:
   _Collider: {fileID: 966784810}
   _LaneEndPoint: {fileID: 1904100417}
   _LaneBeginPoint: {fileID: 1904100418}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &1904100422
 Transform:
   m_ObjectHideFlags: 0
@@ -16029,6 +16371,8 @@ MonoBehaviour:
   _Collider: {fileID: 966784811}
   _LaneEndPoint: {fileID: 1904100420}
   _LaneBeginPoint: {fileID: 1904100415}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1904100425
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16153,6 +16497,7 @@ MonoBehaviour:
   - {fileID: 1958941128}
   - {fileID: 1958941130}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1958941130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16206,6 +16551,7 @@ MonoBehaviour:
   - {fileID: 1958941131}
   - {fileID: 1958941133}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1958941133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16243,6 +16589,8 @@ MonoBehaviour:
   _Collider: {fileID: 1125398504}
   _LaneEndPoint: {fileID: 1958941130}
   _LaneBeginPoint: {fileID: 1958941131}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &1958941135
 Transform:
   m_ObjectHideFlags: 0
@@ -16302,6 +16650,8 @@ MonoBehaviour:
   _Collider: {fileID: 1125398505}
   _LaneEndPoint: {fileID: 1958941133}
   _LaneBeginPoint: {fileID: 1958941128}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1958941138
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16490,6 +16840,7 @@ MonoBehaviour:
   - {fileID: 1986241338}
   - {fileID: 1986241340}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1986241340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16543,6 +16894,7 @@ MonoBehaviour:
   - {fileID: 1986241341}
   - {fileID: 1986241343}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &1986241343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16581,6 +16933,8 @@ MonoBehaviour:
   _Collider: {fileID: 995215078}
   _LaneEndPoint: {fileID: 1986241340}
   _LaneBeginPoint: {fileID: 1986241341}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!4 &1986241345
 Transform:
   m_ObjectHideFlags: 0
@@ -16640,6 +16994,8 @@ MonoBehaviour:
   _Collider: {fileID: 995215079}
   _LaneEndPoint: {fileID: 1986241343}
   _LaneBeginPoint: {fileID: 1986241338}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &1986241348
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16958,6 +17314,7 @@ MonoBehaviour:
   - {fileID: 2094933969}
   - {fileID: 2094933971}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &2094933971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16995,6 +17352,8 @@ MonoBehaviour:
   _Collider: {fileID: 1754176845}
   _LaneEndPoint: {fileID: 2094933971}
   _LaneBeginPoint: {fileID: 2094933973}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &2094933973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17031,6 +17390,7 @@ MonoBehaviour:
   - {fileID: 2094933973}
   - {fileID: 2094933975}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &2094933975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17107,6 +17467,8 @@ MonoBehaviour:
   _Collider: {fileID: 1754176846}
   _LaneEndPoint: {fileID: 2094933975}
   _LaneBeginPoint: {fileID: 2094933969}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &2094933979
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17231,6 +17593,7 @@ MonoBehaviour:
   - {fileID: 2101687364}
   - {fileID: 2101687366}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &2101687366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17268,6 +17631,8 @@ MonoBehaviour:
   _Collider: {fileID: 1706219852}
   _LaneEndPoint: {fileID: 2101687366}
   _LaneBeginPoint: {fileID: 2101687368}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!114 &2101687368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17304,6 +17669,7 @@ MonoBehaviour:
   - {fileID: 2101687368}
   - {fileID: 2101687370}
   _MaxDrivingSpeed: 10
+  _MaxVehicleCount: 1
 --- !u!114 &2101687370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17380,6 +17746,8 @@ MonoBehaviour:
   _Collider: {fileID: 1706219853}
   _LaneEndPoint: {fileID: 2101687370}
   _LaneBeginPoint: {fileID: 2101687364}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
 --- !u!64 &2101687374
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -23,11 +23,14 @@ public class Network : MonoBehaviour
             return _Simulate;
         }
     }
+    public bool hasEnd
+    {
+        get
+        {
+            return _Ends.Count > 0;
+        }
+    }
 
-    [SerializeField]
-    Slider _Slider = null;
-    [SerializeField]
-    Text _SpawnIntervalText = null;
     [SerializeField]
     Toggle _FlowToggle = null;
 
@@ -172,10 +175,13 @@ public class Network : MonoBehaviour
     {
         _Simulate = !_Simulate;
         if(!_Simulate)
+        {
             for (int i = 0; i < _Links.Count; i++)
             {
                 _Links[i].DestroyVehicles();
             }
+            GetComponent<RoadPlacement>().QuitSimulateMode();
+        }
     }
     public void DrawDensity()
     {
@@ -183,30 +189,6 @@ public class Network : MonoBehaviour
         {
             if (_Links[i].Parent)
                 _Links[i].Parent.drawFlow = _FlowToggle.isOn;
-        }
-    }
-    public void UpdateSpawnInterval()
-    {
-        _SpawnInterval = _Slider.value;
-        _SpawnIntervalText.text = "spawn interval\n" + _Slider.value;
-    }
-
-    float _Delta = 0;
-    private void Update()
-    {
-        if(_Simulate && _Ends.Count > 0 && _Spawners.Count > 0)
-        {
-            _Delta += Time.deltaTime;
-
-            if(_Delta >= _SpawnInterval)
-            {
-                int count = 0;
-                while(!_Spawners[Random.Range(0, _Spawners.Count - 1)].SpawnVehicle() && count < _Spawners.Count * 1.5f)
-                {
-                    ++count;
-                }
-                _Delta -= _SpawnInterval;
-            }
         }
     }
 

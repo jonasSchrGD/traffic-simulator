@@ -26,17 +26,29 @@ public class VehicleSpawner : MonoBehaviour
             Network.instance.RemoveSpawner(this);
     }
 
+    public float spawnInterval = 3;
+    private void Update()
+    {
+        if (Network.instance.isSimulating && Network.instance.hasEnd)
+        {
+            delta += Time.deltaTime;
+
+            if(delta >= spawnInterval)
+            {
+                delta -= spawnInterval;
+                SpawnVehicle();
+            }
+        }
+    }
     public bool SpawnVehicle()
     {
-        if (_LastVehicle && Vector2.Distance(_LastVehicle.transform.position, transform.position) < 1)
+        if (_LastVehicle && Vector2.Distance(_LastVehicle.transform.position, transform.position) < 2)
             return false;
 
         List<Lane> path = Network.instance.CalculatePath(_ConnectedLane._Nodes[0]);
 
         if (path == null)
             return false;
-
-        delta -= Network.instance.spawnInterval;
 
         GameObject vehicle = Instantiate(_VehicleBP);
         vehicle.transform.position = transform.position;

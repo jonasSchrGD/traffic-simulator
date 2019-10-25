@@ -21,6 +21,14 @@ public class RoadPlacement : MonoBehaviour
 
     [SerializeField]
     Dropdown _BuildingSelection;
+    [SerializeField]
+    InputField _IntervalInput = null;
+    [SerializeField]
+    InputField _MaxVelInput = null;
+    [SerializeField]
+    Text _RoadUI = null;
+    [SerializeField]
+    Text _SpawnerUI = null;
 
     Vector2 _OldMousePos, _CurrentMousePos;
 
@@ -35,12 +43,14 @@ public class RoadPlacement : MonoBehaviour
         UpdateCameraInput();
         if (_State == 3 || Network.instance.isSimulating)
         {
-            UpdateSimulateInput();
+            if (!IsUsingUI())
+                UpdateSimulateInput();
             UpdateSimulateMode();
         }
         else
         {
-            UpdateEditorInput();
+            if (!IsUsingUI())
+                UpdateEditorInput();
             UpdateEditorMode();
         }
     }
@@ -88,11 +98,11 @@ public class RoadPlacement : MonoBehaviour
     {
         switch (_State)
         {
-            case 1:
-                PlaceSpawner();
+            case 0:
+                SelectRoad();
                 break;
-            case 2:
-                PlaceEnd();
+            case 1:
+                SelectSpawner();
                 break;
             default:
                 break;
@@ -100,7 +110,8 @@ public class RoadPlacement : MonoBehaviour
     }
     private void UpdateSimulateMode()
     {
-
+        _RoadUI.gameObject.SetActive(Network.instance.isSimulating && _State == 0);
+        _SpawnerUI.gameObject.SetActive(Network.instance.isSimulating && _State == 1);
     }
 
     private void UpdateCameraInput()
@@ -125,14 +136,15 @@ public class RoadPlacement : MonoBehaviour
     private Road IsTargetingRoadMesh()
     {
         Vector3 BeginPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        BeginPos.z = 1;
+        BeginPos.z = -10;
         RaycastHit ray;
-        if (Physics.Raycast(BeginPos, Vector3.back, out ray))
+        if (Physics.Raycast(BeginPos, Vector3.forward, out ray))
             if (ray.collider && ray.collider.gameObject.tag == "Road")
             {
                 GameObject road = ray.collider.gameObject;
                 return road.GetComponentInParent<Road>();
             }
+
         return null;
     }
     private Crossroad IsTargetingCrossRoad()
@@ -150,7 +162,7 @@ public class RoadPlacement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (_CurrentRoad == null && !IsUsingUI())
+            if (_CurrentRoad == null)
             {
                 _CurrentRoad = IsTargetingRoadEnd();
                 _CurrentCrossRoad = IsTargetingCrossRoad();
@@ -248,6 +260,34 @@ public class RoadPlacement : MonoBehaviour
         }
     }
 
+    private void SelectRoad()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _CurrentRoad = IsTargetingRoadEnd();
+            if (!_CurrentRoad)
+                _CurrentRoad = IsTargetingRoadMesh();
+
+            if (_CurrentRoad)
+                _MaxVelInput.text = (_CurrentRoad.maxDrivingSpeed * 3.6f).ToString();
+        }
+    }
+    private void SelectSpawner()
+    {
+        Road road = IsTargetingRoadEnd();
+
+        if (road)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _CurrentSpawner = road.GetSpawner(road.GetClickedRoadEnd(Camera.main.ScreenToWorldPoint(_CurrentMousePos)));
+
+                if (_CurrentSpawner)
+                    _IntervalInput.text = _CurrentSpawner.spawnInterval.ToString();
+            }
+        }
+    }
+
     //ui functions
     private bool IsUsingUI()
     {
@@ -270,5 +310,25 @@ public class RoadPlacement : MonoBehaviour
                 _State = -1;
                 break;
         }
+    }
+    public void UpdateRoadVel()
+    {
+        if (_CurrentRoad)
+            _CurrentRoad.maxDrivingSpeed = int.Parse(_MaxVelInput.text) / 3.6f;
+    }
+    public void UpdateSpawnInterval()
+    {
+        if (_CurrentSpawner)
+            _CurrentSpawner.spawnInterval = float.Parse(_IntervalInput.text);
+    }
+
+    public void QuitSimulateMode()
+    {
+        _CurrentRoad = null;
+        _CurrentCrossRoad = null;
+        _CurrentSpawner = null;
+
+        _RoadUI.gameObject.SetActive(false);
+        _SpawnerUI.gameObject.SetActive(false);
     }
 }

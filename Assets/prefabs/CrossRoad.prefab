@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ConnectedRoads: []
   _DrivingSpeed: 7.5
+  _NrOfSteps: 5
+  _Vehicle: {fileID: 0}
 --- !u!58 &-5160120149853797920
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -89,7 +91,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41f6be3404d37714eadf8d9c5e854763, type: 2}
+  - {fileID: 2100000, guid: 7b93ca8c0dec97f4bb8748dbbe58a2e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

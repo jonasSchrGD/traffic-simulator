@@ -24,7 +24,20 @@ public class Road : RoadStructure
     [SerializeField]
     private int nrOfLanes = 1;
 
-    private Lane[] lane;
+    public float maxDrivingSpeed
+    {
+        get
+        {
+            return _Links[0].maxDrivingSpeed;
+        }
+        set
+        {
+            for (int i = 0; i < _Links.Count; i++)
+            {
+                _Links[i].maxDrivingSpeed = value;
+            }
+        }
+    }
 
     [SerializeField]
     private EndPoint[] _EndPoints = null;
@@ -235,6 +248,15 @@ public class Road : RoadStructure
         if (_EndPoints[endToRemove]._ConnectedEnd)
             Destroy(_EndPoints[endToRemove]._ConnectedEnd);
     }
+    public VehicleSpawner GetSpawner(int end)
+    {
+        if (_EndPoints[end]._ConnectedSpawner)
+        {
+            return _EndPoints[end]._ConnectedSpawner.GetComponent<VehicleSpawner>();
+        }
+
+        return null;
+    }
 
     public void EnableColliders()
     {
@@ -255,10 +277,17 @@ public class Road : RoadStructure
         List<Vector2> path1 = new List<Vector2>();
         List<Vector2> path2 = new List<Vector2>();
 
+        int triIndex = 6 + 6 * (_Links.Count - 1), vertIdx = (2 + 2 * (_Links.Count - 1));
         Vector2[] points = new Vector2[4];
         Vector2[] path = new Vector2[_NrOfSteps + 1];
-        Vector3[] vertices = new Vector3[(2 * _Links.Count) * (_NrOfSteps + 1)];
-        int[] tris = new int[12 * _NrOfSteps];
+        Vector3[] vertices = new Vector3[vertIdx * (_NrOfSteps + 1)];
+        Vector2[] uv = new Vector2[vertIdx * (_NrOfSteps + 1)];
+        int[] tris = new int[triIndex * _NrOfSteps];
+        float x = 0;
+
+        int currentTriIdx = 0, currentVertIdx = 0;
+        while (currentVertIdx < vertices.Length - vertIdx)
+            AddTris(ref tris, ref currentVertIdx, vertIdx, ref currentTriIdx);
 
         //calculate path
         float distance = (_EndPoints[0].pos - _EndPoints[1].pos).magnitude * bezHandleMul;
@@ -280,20 +309,6 @@ public class Road : RoadStructure
             path[i] = Vector2.Lerp(Lerp12, Lerp23, stepSize * i);
         }
 
-        tris[0] = 0;
-        tris[1] = 4;
-        tris[2] = 1;
-        tris[3] = 1;
-        tris[4] = 4;
-        tris[5] = 5;
-        tris[6] = 2;
-        tris[7] = 6;
-        tris[8] = 3;
-        tris[9] = 3;
-        tris[10] = 6;
-        tris[11] = 7;
-
-        int triIndex = 12, vertIdx = (2 * _Links.Count);
         Vector2 startDir = Vector2.zero;
 
         //calculate first 2 vertices
@@ -302,35 +317,21 @@ public class Road : RoadStructure
         else
             startDir = (path[0] - path[1]).normalized;
 
-        CalculatePoints(path[0], startDir, ref vertices, 0, ref path1, ref path2);
-        
+        CalculatePoints(path[0], startDir, ref vertices, 0, ref path1, ref path2, ref uv, x);
+
         //calculate middle vertices
+        currentVertIdx = 0;
         for (int i = 1; i < _NrOfSteps; i++)
         {
             Vector2 PrevDir = (path[i - 1] - path[i]).normalized;
             startDir = (path[i] - path[i + 1]).normalized;
             Vector2 dir = (PrevDir + startDir).normalized;
+            x += Vector2.Distance(path[i - 1], path[i]);
 
-            CalculatePoints(path[i], dir, ref vertices, vertIdx, ref path1, ref path2);
-
-
-            tris[triIndex] = vertIdx;
-            tris[triIndex + 1] = vertIdx + 4;
-            tris[triIndex + 2] = vertIdx + 1;
-            tris[triIndex + 3] = vertIdx + 1;
-            tris[triIndex + 4] = vertIdx + 4;
-            tris[triIndex + 5] = vertIdx + 5;
-
-            tris[triIndex + 6] = vertIdx + 2;
-            tris[triIndex + 7] = vertIdx + 6;
-            tris[triIndex + 8] = vertIdx + 3;
-            tris[triIndex + 9] = vertIdx + 3;
-            tris[triIndex + 10] = vertIdx + 6;
-            tris[triIndex + 11] = vertIdx + 7;
-
-            vertIdx += (2 * _Links.Count);
-            triIndex += 12;
+            currentVertIdx += vertIdx;
+            CalculatePoints(path[i], dir, ref vertices, currentVertIdx, ref path1, ref path2, ref uv, x);
         }
+        x += Vector2.Distance(path[_NrOfSteps - 1], path[_NrOfSteps]);
 
         //calculate last 2 vertices
         if (_EndPoints[1].crossroad)
@@ -338,22 +339,25 @@ public class Road : RoadStructure
         else
             startDir = (path[_NrOfSteps - 1] - path[_NrOfSteps]).normalized;
 
-        CalculatePoints(path[_NrOfSteps], startDir, ref vertices, vertIdx, ref path1, ref path2);
+        CalculatePoints(path[_NrOfSteps], startDir, ref vertices, currentVertIdx + vertIdx, ref path1, ref path2, ref uv, x);
 
         //center vertices
         for (int i = 0; i < (2 * _Links.Count) * (_NrOfSteps + 1); i++)
             vertices[i] -= transform.position;
 
         _Links[0].path = path1;
-        _Links[1].path = path2;
+        if (_Links.Count > 1)
+            _Links[1].path = path2;
 
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;
         mesh.triangles = tris;
         GetComponent<MeshCollider>().sharedMesh = mesh;
+
         mesh = new Mesh();
         mesh.vertices = vertices;
         mesh.triangles = tris;
+        mesh.uv = uv;
         GetComponent<MeshFilter>().mesh = mesh;
 
         List<Color> colors = new List<Color>();
@@ -385,7 +389,8 @@ public class Road : RoadStructure
         GetComponent<MeshFilter>().mesh.SetColors(colors);
     }
 
-    private void CalculatePoints(Vector2 point, Vector2 direction, ref Vector3[] vertices, int idx, ref List<Vector2> link1, ref List<Vector2> link2)
+    private float scaling = 0.25f;
+    private void CalculatePoints(Vector2 point, Vector2 direction, ref Vector3[] vertices, int idx, ref List<Vector2> link1, ref List<Vector2> link2, ref Vector2[] uv, float x)
     {
         direction.Normalize();
         Vector2 leftDir = left * direction;
@@ -396,15 +401,36 @@ public class Road : RoadStructure
 
         if (_Links.Count > 1)
         {
-            vertices[idx] = point + leftDir * roadWidth / 2;
+            vertices[idx] = point + rightDir * roadWidth / 2;
             vertices[idx + 1] = point;
             vertices[idx + 2] = point;
-            vertices[idx + 3] = point + rightDir * roadWidth / 2;
+            vertices[idx + 3] = point + leftDir * roadWidth / 2;
+
+            uv[idx] = new Vector2(x * scaling, 1);
+            uv[idx + 1]  = new Vector2( x * scaling, 0.5f);
+            uv[idx + 2]  = new Vector2(x * scaling, 0.5f);
+            uv[idx + 3] = new Vector2(x * scaling, 0);  
         }
         else
         {
-            vertices[idx] = point + leftDir * roadWidth / 2;
-            vertices[idx + 3] = point + rightDir * roadWidth / 2;
+            vertices[idx] = point + rightDir * roadWidth / 2;
+            vertices[idx + 1] = point + leftDir * roadWidth / 2;
+
+            uv[idx] = new Vector2(x * scaling, 1);
+            uv[idx + 1] = new Vector2(x * scaling, 0);
         }
+    }
+    private void AddTris(ref int[] tris, ref int n, int verticesPerRow, ref int triIdx)
+    {
+        tris[triIdx] = n;
+        tris[triIdx + 1] = n + verticesPerRow;
+        tris[triIdx + 2] = n + 1;
+
+        tris[triIdx + 3] = n + 1;
+        tris[triIdx + 4] = n + verticesPerRow;
+        tris[triIdx + 5] = n + verticesPerRow + 1;
+
+        triIdx += 6;
+        n += 2;
     }
 }
