@@ -16,13 +16,13 @@ public class Road : RoadStructure
     {
         get
         {
-            return height;
+            return _LaneWidth * _NrOfLanes;
         }
     }
-    private float height = 3;
+    private float _LaneWidth = 1.5f;
 
     [SerializeField]
-    private int nrOfLanes = 1;
+    private int _NrOfLanes = 1;
 
     public float maxDrivingSpeed
     {
@@ -67,8 +67,6 @@ public class Road : RoadStructure
     //functions
     private void Start()
     {
-        float laneHeight = height / nrOfLanes;
-
         CircleCollider2D[] colliders = gameObject.GetComponentsInChildren<CircleCollider2D>();
         _EndPoints[0]._Collider = colliders[0];
         _EndPoints[1]._Collider = colliders[1];
@@ -80,7 +78,7 @@ public class Road : RoadStructure
             _EndPoints[1].pos = transform.position + Vector3.right * _CirclePos;
 
         if (!GetLanes())
-            InitNetwork(laneHeight);
+            InitNetwork(_LaneWidth);
 
         UpdateRoad(true);
     }
@@ -141,13 +139,13 @@ public class Road : RoadStructure
     }
     private void InitNetwork(float laneHeight)
     {
-        for (int i = 0; i < nrOfLanes; ++i)
+        for (int i = 0; i < _NrOfLanes; ++i)
         {
             Lane lane = gameObject.AddComponent<Lane>();
             lane.Parent = this;
             AddLink(lane);
             
-            if(i == 0)
+            if(i < _NrOfLanes / 2 || _NrOfLanes == 1)
             {
                 lane._Nodes[1] = _EndPoints[1]._LaneEndPoint;
 
@@ -274,8 +272,11 @@ public class Road : RoadStructure
         if (_NrOfSteps <= 0)
             return;
 
-        List<Vector2> path1 = new List<Vector2>();
-        List<Vector2> path2 = new List<Vector2>();
+        List<Vector2>[] paths = new List<Vector2>[_NrOfLanes];
+        for (int i = 0; i < _NrOfLanes; i++)
+        {
+            paths[i] = new List<Vector2>();
+        }
 
         int triIndex = 6 + 6 * (_Links.Count - 1), vertIdx = (2 + 2 * (_Links.Count - 1));
         Vector2[] points = new Vector2[4];
@@ -317,7 +318,7 @@ public class Road : RoadStructure
         else
             startDir = (path[0] - path[1]).normalized;
 
-        CalculatePoints(path[0], startDir, ref vertices, 0, ref path1, ref path2, ref uv, x);
+        CalculatePoints(path[0], startDir, ref vertices, 0, ref paths, ref uv, x);
 
         //calculate middle vertices
         currentVertIdx = 0;
@@ -329,7 +330,7 @@ public class Road : RoadStructure
             x += Vector2.Distance(path[i - 1], path[i]);
 
             currentVertIdx += vertIdx;
-            CalculatePoints(path[i], dir, ref vertices, currentVertIdx, ref path1, ref path2, ref uv, x);
+            CalculatePoints(path[i], dir, ref vertices, currentVertIdx, ref paths, ref uv, x);
         }
         x += Vector2.Distance(path[_NrOfSteps - 1], path[_NrOfSteps]);
 
@@ -339,15 +340,16 @@ public class Road : RoadStructure
         else
             startDir = (path[_NrOfSteps - 1] - path[_NrOfSteps]).normalized;
 
-        CalculatePoints(path[_NrOfSteps], startDir, ref vertices, currentVertIdx + vertIdx, ref path1, ref path2, ref uv, x);
+        CalculatePoints(path[_NrOfSteps], startDir, ref vertices, currentVertIdx + vertIdx, ref paths, ref uv, x);
 
         //center vertices
-        for (int i = 0; i < (2 * _Links.Count) * (_NrOfSteps + 1); i++)
+        for (int i = 0; i < vertices.Length; i++)
             vertices[i] -= transform.position;
 
-        _Links[0].path = path1;
-        if (_Links.Count > 1)
-            _Links[1].path = path2;
+        for (int i = 0; i < _NrOfLanes; i++)
+        {
+            _Links[i].path = paths[i];
+        }
 
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;
@@ -389,35 +391,31 @@ public class Road : RoadStructure
         GetComponent<MeshFilter>().mesh.SetColors(colors);
     }
 
+    [SerializeField]
     private float scaling = 0.25f;
-    private void CalculatePoints(Vector2 point, Vector2 direction, ref Vector3[] vertices, int idx, ref List<Vector2> link1, ref List<Vector2> link2, ref Vector2[] uv, float x)
+    private void CalculatePoints(Vector2 point, Vector2 direction, ref Vector3[] vertices, int idx, ref List<Vector2>[] lanes, ref Vector2[] uv, float x)
     {
         direction.Normalize();
-        Vector2 leftDir = left * direction;
-        Vector2 rightDir = right * direction;
+        Vector2 rightDir = left * direction;
+        Vector2 leftDir = right * direction;
 
-        link1.Add(point + leftDir * (roadWidth / 4));
-        link2.Insert(0, point + rightDir * (roadWidth / 4));
+        Vector2 leftPoint = point + leftDir * ((_LaneWidth * _NrOfLanes) / 2);
+        float y = 1, yStep = 1.0f / _NrOfLanes;
 
-        if (_Links.Count > 1)
+        for (int i = 0; i < _NrOfLanes; i++)
         {
-            vertices[idx] = point + rightDir * roadWidth / 2;
-            vertices[idx + 1] = point;
-            vertices[idx + 2] = point;
-            vertices[idx + 3] = point + leftDir * roadWidth / 2;
+            if (i < _NrOfLanes / 2 || _NrOfLanes == 1)
+                lanes[i].Add(leftPoint + rightDir * _LaneWidth / 2);
+            else
+                lanes[i].Insert(0, leftPoint + rightDir * _LaneWidth / 2);
 
-            uv[idx] = new Vector2(x * scaling, 1);
-            uv[idx + 1]  = new Vector2( x * scaling, 0.5f);
-            uv[idx + 2]  = new Vector2(x * scaling, 0.5f);
-            uv[idx + 3] = new Vector2(x * scaling, 0);  
-        }
-        else
-        {
-            vertices[idx] = point + rightDir * roadWidth / 2;
-            vertices[idx + 1] = point + leftDir * roadWidth / 2;
+            uv[idx + i * 2] = new Vector2(x * scaling, y);
+            y -= yStep;
+            uv[idx + i * 2 + 1] = new Vector2(x * scaling, y);
 
-            uv[idx] = new Vector2(x * scaling, 1);
-            uv[idx + 1] = new Vector2(x * scaling, 0);
+            vertices[idx + i * 2] = leftPoint;
+            leftPoint += rightDir * _LaneWidth;
+            vertices[idx + i * 2 + 1] = leftPoint;
         }
     }
     private void AddTris(ref int[] tris, ref int n, int verticesPerRow, ref int triIdx)
