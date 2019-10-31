@@ -15,7 +15,7 @@ public class Node : MonoBehaviour
             _Position = value;
             for (int i = 0; i < _ConnectedLanes.Count; i++)
             {
-                _ConnectedLanes[i].UpdateNodes(isEndNode);
+                _ConnectedLanes[i].UpdateNodes(!isEndNode);
             }
         }
     }

@@ -152,7 +152,7 @@ public class Lane : MonoBehaviour
 
     public bool CanEnter()
     {
-        return _Vehicles.Count + 1 <= _MaxVehicleCount;
+        return _Vehicles.Count + 1 <= Mathf.Round(_MaxVehicleCount);
     }
 
     //network calculations

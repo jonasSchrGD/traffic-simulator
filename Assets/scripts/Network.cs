@@ -140,7 +140,7 @@ public class Network : MonoBehaviour
 
             foreach (var lane in Connections)
             {
-                if (openList.IndexOf(lane) == -1 && openList.IndexOf(lane) == -1)
+                if (openList.IndexOf(lane) == -1 && closedList.IndexOf(lane) == -1)
                 {
                     lane.headConnection = currentLane;
                     lane.calculateCost(EndPoint);
@@ -167,7 +167,9 @@ public class Network : MonoBehaviour
     }
     public List<Lane> CalculatePath(Node startPoint)
     {
-        return CalculatePath(startPoint, _Ends[Random.Range(0, _Ends.Count - 1)].GetConnectedNode());
+        if (_Ends.Count > 0)
+            return CalculatePath(startPoint, _Ends[Random.Range(0, _Ends.Count - 1)].GetConnectedNode());
+        else return null;
     }
 
     //UI functions
@@ -180,7 +182,6 @@ public class Network : MonoBehaviour
             {
                 _Links[i].DestroyVehicles();
             }
-            GetComponent<RoadPlacement>().QuitSimulateMode();
         }
     }
     public void DrawDensity()

@@ -36,16 +36,6 @@ public class Vehicle : MonoBehaviour
 
     private Lane _FreeLane;
 
-    public List<Lane> path
-    {
-        set
-        {
-            _Path = value;
-        }
-    }
-    private List<Lane> _Path;
-    private int _PathIdx = 0;
-
     [Header("DEBUG: do not touch"), SerializeField]
     float gap = 0;
     [SerializeField]
@@ -56,6 +46,17 @@ public class Vehicle : MonoBehaviour
     Vector2 direction = Vector2.zero;
     [SerializeField]
     private Vector3 _FreeTarget;
+
+    public List<Lane> path
+    {
+        set
+        {
+            _Path = value;
+        }
+    }
+    [SerializeField]
+    private List<Lane> _Path;
+    private int _PathIdx = 0;
 
     private void Start()
     {
@@ -190,6 +191,9 @@ public class Vehicle : MonoBehaviour
         Lane endLane = _CurrentLane;
         while(endLane._Nodes[1].connectedLanes.Count == 1)
         {
+            //check for crossroads where a road only has 1 other connection, this happens with 1 lane roads
+            if (endLane._Nodes[1].connectedLanes[0].Parent == null)
+                break;
             if (endLane._Nodes[1].connectedLanes[0] != _CurrentLane)
                 endLane = endLane._Nodes[1].connectedLanes[0];
             else
@@ -203,7 +207,7 @@ public class Vehicle : MonoBehaviour
             _CurrentLane._Nodes[1].parent.crossroad && _CurrentLane._Nodes[1].parent.crossroad.roadCount > 2 && 
             endLane._Nodes[1].parent.crossroad.EnterCrossroad(gameObject))
         {
-            if (_CurrentLane.GetLeadingVehicle(gameObject) == null && _Path[_PathIdx + 2].CanEnter())
+            if (_CurrentLane.GetLeadingVehicle(gameObject) == null && _Path[_PathIdx + 2].CanEnter() && !_CurrentCrossroad)
             {
                 _CurrentCrossroad = endLane._Nodes[1].parent.crossroad;
                 _FreeTarget = Vector3.forward * 10000;

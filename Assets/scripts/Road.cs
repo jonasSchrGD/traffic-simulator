@@ -16,10 +16,10 @@ public class Road : RoadStructure
     {
         get
         {
-            return _LaneWidth * _NrOfLanes;
+            return _LaneWidth;
         }
     }
-    private float _LaneWidth = 1.5f;
+    private float _LaneWidth = 3;
 
     [SerializeField]
     private int _NrOfLanes = 1;
@@ -128,13 +128,13 @@ public class Road : RoadStructure
     {
         Lane[] lanes = GetComponents<Lane>();
 
-        if(lanes.Length > 0)
+        foreach (var lane in lanes)
         {
-            AddLink(lanes[0]);
-            AddLink(lanes[1]);
-
-            return true;
+            AddLink(lane);
         }
+        if (lanes.Length > 0)
+            return true;
+
         return false;
     }
     private void InitNetwork(float laneHeight)
@@ -206,7 +206,7 @@ public class Road : RoadStructure
 
     public bool ConnectSpawner(GameObject spawner, int endToConnect)
     {
-        if (_EndPoints[endToConnect]._ConnectedSpawner)
+        if (_EndPoints[endToConnect]._ConnectedSpawner || !_EndPoints[endToConnect]._LaneBeginPoint)
             return false;
 
         VehicleSpawner vSpawner = spawner.GetComponent<VehicleSpawner>();
@@ -227,7 +227,7 @@ public class Road : RoadStructure
     }
     public bool ConnectEnd(GameObject end, int endToConnect)
     {
-        if (_EndPoints[endToConnect]._ConnectedEnd)
+        if (_EndPoints[endToConnect]._ConnectedEnd || !_EndPoints[endToConnect]._LaneEndPoint)
             return false;
 
         VehicleEnd vEnd = end.GetComponent<VehicleEnd>();
@@ -374,7 +374,7 @@ public class Road : RoadStructure
         List<Color> colors = new List<Color>();
         for (int i = 0, length = GetComponent<MeshFilter>().mesh.colors.Length / 2; i < length; ++i)
         {
-            Color color = Color.green * (1 - _Links[i % 2]._Density) + Color.red * _Links[i % 2]._Density;
+            Color color = Color.green * (1 - _Links[(i + 1) % _NrOfLanes]._Density) + Color.red * _Links[(i + 1) % _NrOfLanes]._Density;
             color *= 2;
             colors.Add(color);
             colors.Add(color);
@@ -399,23 +399,27 @@ public class Road : RoadStructure
         Vector2 rightDir = left * direction;
         Vector2 leftDir = right * direction;
 
-        Vector2 leftPoint = point + leftDir * ((_LaneWidth * _NrOfLanes) / 2);
+        Vector2 leftPoint = point + leftDir * (_LaneWidth / 2);
         float y = 1, yStep = 1.0f / _NrOfLanes;
 
         for (int i = 0; i < _NrOfLanes; i++)
         {
-            if (i < _NrOfLanes / 2 || _NrOfLanes == 1)
-                lanes[i].Add(leftPoint + rightDir * _LaneWidth / 2);
-            else
-                lanes[i].Insert(0, leftPoint + rightDir * _LaneWidth / 2);
-
             uv[idx + i * 2] = new Vector2(x * scaling, y);
             y -= yStep;
             uv[idx + i * 2 + 1] = new Vector2(x * scaling, y);
 
             vertices[idx + i * 2] = leftPoint;
-            leftPoint += rightDir * _LaneWidth;
+            leftPoint += rightDir * _LaneWidth / _NrOfLanes;
             vertices[idx + i * 2 + 1] = leftPoint;
+        }
+
+        for (int i = 0; i < _NrOfLanes; i++)
+        {
+            if (i < _NrOfLanes / 2 || _NrOfLanes == 1)
+                lanes[i].Add(leftPoint + leftDir * _LaneWidth / _NrOfLanes / 2);
+            else
+                lanes[i].Insert(0, leftPoint + leftDir * _LaneWidth / _NrOfLanes / 2);
+            leftPoint += leftDir * _LaneWidth / _NrOfLanes;
         }
     }
     private void AddTris(ref int[] tris, ref int n, int verticesPerRow, ref int triIdx)

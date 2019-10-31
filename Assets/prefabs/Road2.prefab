@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 2641271596474975951}
   - component: {fileID: 2641271596474975944}
   - component: {fileID: 2641271596474975945}
-  - component: {fileID: 2641271596474975947}
   - component: {fileID: 2641271596474975956}
+  - component: {fileID: 2641271596474975947}
   - component: {fileID: 2641271596474975946}
   - component: {fileID: 1123474187806563821}
   - component: {fileID: 185362528628156311}
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 2595423450169316556}
   - component: {fileID: 4837484802259578816}
   m_Layer: 0
-  m_Name: Road
+  m_Name: Road2
   m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,28 +151,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2641271596474975947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2641271596474975957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0630299a6e1ad3244b05e5aa57d61d19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Parent: {fileID: 2641271596474975946}
-  _LocalDirection: -1
-  _WorldDirection: {x: 0, y: 0}
-  _Pos: {x: -40, y: 6}
-  _Crossroad: {fileID: 0}
-  _Collider: {fileID: 0}
-  _LaneEndPoint: {fileID: 1123474187806563821}
-  _LaneBeginPoint: {fileID: 185362528628156311}
-  _ConnectedSpawner: {fileID: 0}
-  _ConnectedEnd: {fileID: 0}
 --- !u!114 &2641271596474975956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,8 +169,30 @@ MonoBehaviour:
   _Pos: {x: -40, y: -6}
   _Crossroad: {fileID: 0}
   _Collider: {fileID: 0}
-  _LaneEndPoint: {fileID: 1592120083096869467}
-  _LaneBeginPoint: {fileID: 2595423450169316556}
+  _LaneEndPoint: {fileID: 2595423450169316556}
+  _LaneBeginPoint: {fileID: 1592120083096869467}
+  _ConnectedSpawner: {fileID: 0}
+  _ConnectedEnd: {fileID: 0}
+--- !u!114 &2641271596474975947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2641271596474975957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0630299a6e1ad3244b05e5aa57d61d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 2641271596474975946}
+  _LocalDirection: -1
+  _WorldDirection: {x: 0, y: 0}
+  _Pos: {x: -40, y: 6}
+  _Crossroad: {fileID: 0}
+  _Collider: {fileID: 0}
+  _LaneEndPoint: {fileID: 185362528628156311}
+  _LaneBeginPoint: {fileID: 1123474187806563821}
   _ConnectedSpawner: {fileID: 0}
   _ConnectedEnd: {fileID: 0}
 --- !u!114 &2641271596474975946
@@ -212,7 +212,7 @@ MonoBehaviour:
   _CrossRoadBP: {fileID: 799992468070128993, guid: 083ad0065ebb22f44a9a451f9d55045f,
     type: 3}
   _NrOfSteps: 15
-  _NrOfLanes: 1
+  _NrOfLanes: 2
   _EndPoints:
   - {fileID: 2641271596474975947}
   - {fileID: 2641271596474975956}

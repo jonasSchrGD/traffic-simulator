@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class RoadPlacement : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _RoadBP = null;
+    private GameObject[] _RoadBP = null;
     [SerializeField]
     private GameObject _SpawnerBP = null;
     [SerializeField]
@@ -16,24 +16,31 @@ public class RoadPlacement : MonoBehaviour
     private Crossroad _CurrentCrossRoad;
     private VehicleSpawner _CurrentSpawner;
 
+    private int _LaneCount = 1;
+
     [SerializeField]
     Image _UIBackGround = null;
 
     [SerializeField]
     Dropdown _BuildingSelection;
     [SerializeField]
-    InputField _IntervalInput = null;
-    [SerializeField]
     InputField _MaxVelInput = null;
     [SerializeField]
     Text _RoadUI = null;
     [SerializeField]
+    InputField _IntervalInput = null;
+    [SerializeField]
     Text _SpawnerUI = null;
+    [SerializeField]
+    InputField _LaneCountInput = null;
+    [SerializeField]
+    Text _LaneCountUI = null;
 
     Vector2 _OldMousePos, _CurrentMousePos;
 
     private int _RoadEnd = 0;
     private int _State = 0;
+    bool _Simulate = false;
 
     private void Update()
     {
@@ -176,7 +183,7 @@ public class RoadPlacement : MonoBehaviour
                     _CurrentCrossRoad.GetComponent<CircleCollider2D>().enabled = false;
                 else
                 {
-                    GameObject road = Instantiate(_RoadBP);
+                    GameObject road = Instantiate(_RoadBP[_LaneCount]);
                     _CurrentRoad = road.GetComponentInChildren<Road>();
 
                     Vector2[] points = new Vector2[2] { Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero };
@@ -321,14 +328,26 @@ public class RoadPlacement : MonoBehaviour
         if (_CurrentSpawner)
             _CurrentSpawner.spawnInterval = float.Parse(_IntervalInput.text);
     }
-
-    public void QuitSimulateMode()
+    public void UpdateLaneCount()
     {
-        _CurrentRoad = null;
-        _CurrentCrossRoad = null;
-        _CurrentSpawner = null;
+        _LaneCount = int.Parse(_LaneCountInput.text) - 1;
+    }
+    public void Simulate()
+    {
+        _Simulate = !_Simulate;
+        if (_Simulate)
+        {
+            _LaneCountUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            _CurrentRoad = null;
+            _CurrentCrossRoad = null;
+            _CurrentSpawner = null;
 
-        _RoadUI.gameObject.SetActive(false);
-        _SpawnerUI.gameObject.SetActive(false);
+            _RoadUI.gameObject.SetActive(false);
+            _SpawnerUI.gameObject.SetActive(false);
+            _LaneCountUI.gameObject.SetActive(true);
+        }
     }
 }

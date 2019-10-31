@@ -57,17 +57,25 @@ public class Crossroad : RoadStructure
     public void UpdateCrossroad(bool UpdateConnections)
     {
         if(UpdateConnections)
-        for (int i = 0; i < _ConnectedRoads.Count; i++)
-        {
-            _ConnectedRoads[i].EnableUpdateCrossroad(true);
-        }
+            for (int i = 0; i < _ConnectedRoads.Count; i++)
+            {
+                _ConnectedRoads[i].EnableUpdateCrossroad(true);
+            }
         CalculateCorners();
     }
 
     private void CalculateOffset(int roadCount)
     {
         //https://www.mathopenref.com/polygonsides.html
-        _Distance = _ConnectedRoads[0].gameObject.GetComponentInChildren<Road>().roadWidth / (2 * Mathf.Tan(Mathf.PI / roadCount));
+        float roadWidth = 0;
+        for (int i = 0; i < _ConnectedRoads.Count; i++)
+        {
+            float width = _ConnectedRoads[i].gameObject.GetComponentInChildren<Road>().roadWidth;
+
+            if (width > roadWidth)
+                roadWidth = width;
+        }
+        _Distance = roadWidth / (2 * Mathf.Tan(Mathf.PI / roadCount));
 
         Vector3 direction = ((Vector3)_ConnectedRoads[0].transform.position - transform.position).normalized * _Distance;
         _ConnectedRoads[0].pos = transform.position + direction;
@@ -116,6 +124,33 @@ public class Crossroad : RoadStructure
         }
 
         _ConnectedRoads = sortedList;
+    }
+    private void Sort4WayQuad()
+    {
+        CalculateOffset(4);
+
+        EndPoint smallestAnglePoint = null;
+        float smallestAngle = 0;
+        Vector2 newDir = Vector2.zero;
+        for (int i = 0; i < _ConnectedRoads.Count; i++)
+        {
+            for (int j = 0; j < _ConnectedRoads.Count; j++)
+            {
+                Vector2 direction = (_ConnectedRoads[i].transform.position - transform.position).normalized;
+                Vector2 direction2 = (_ConnectedRoads[j].transform.position - transform.position).normalized;
+                float angle = Vector2.Angle(direction, direction2);
+
+                if (angle > smallestAngle)
+                {
+                    smallestAngle = angle;
+                    smallestAnglePoint = _ConnectedRoads[i];
+                    newDir = direction;
+                }
+            }
+        }
+
+        SortList(smallestAnglePoint);
+        CalculateOffset(4);
     }
     private void Sort3WayQuad()
     {
@@ -191,7 +226,14 @@ public class Crossroad : RoadStructure
 
     private void CalculateCorners()
     {
-        float roadwidth = _ConnectedRoads[0].gameObject.GetComponentInChildren<Road>().roadWidth;
+        float roadwidth = 0;
+        for (int i = 0; i < _ConnectedRoads.Count; i++)
+        {
+            float width = _ConnectedRoads[i].gameObject.GetComponentInChildren<Road>().roadWidth;
+
+            if (width > roadwidth)
+                roadwidth = width;
+        }
         if (_ConnectedRoads.Count != 2)
         {
             if (_ConnectedRoads.Count == 4)
@@ -262,7 +304,10 @@ public class Crossroad : RoadStructure
     }
     private void CreateQuad(float roadWidth)
     {
-        Sort3WayQuad();
+        if (_ConnectedRoads.Count == 3)
+            Sort3WayQuad();
+        if (_ConnectedRoads.Count == 4)
+            Sort4WayQuad();
         Vector2 startDirection = (_ConnectedRoads[0].pos - (Vector2)transform.position).normalized;
 
         Vector3[] corners = new Vector3[4];
@@ -334,7 +379,10 @@ public class Crossroad : RoadStructure
 
         for (int i = 0; i < _ConnectedRoads.Count; i++)
         {
-            _BeginNodes.Add(_ConnectedRoads[i]._LaneBeginPoint);
+            if (_ConnectedRoads[i]._LaneBeginPoint)
+                _BeginNodes.Add(_ConnectedRoads[i]._LaneBeginPoint);
+
+            if(_ConnectedRoads[i]._LaneEndPoint)
             _EndNodes.Add(_ConnectedRoads[i]._LaneEndPoint);
         }
 
@@ -342,7 +390,7 @@ public class Crossroad : RoadStructure
         {
             for (int j = 0; j < _EndNodes.Count; j++)
             {
-                if (i == j)
+                if (_BeginNodes[i].parent == _EndNodes[j].parent)
                     continue;
 
                 Lane link = gameObject.AddComponent<Lane>();
@@ -353,7 +401,8 @@ public class Crossroad : RoadStructure
 
                 _EndNodes[j].AddLink(link, 0);
 
-                if (_BeginNodes[i].parent._WorldDirection != -_EndNodes[j].parent._WorldDirection)
+                float angle = Vector2.Angle(_BeginNodes[i].parent._WorldDirection, -_EndNodes[j].parent._WorldDirection);
+                if (angle > 5)
                     link.path = CalculatePath(_BeginNodes[i].position, CalculateIntersectPoint(_BeginNodes[i].position, -_BeginNodes[i].parent._WorldDirection, _EndNodes[j].position, -_EndNodes[j].parent._WorldDirection), _EndNodes[j].position);
             }
         }
@@ -422,12 +471,6 @@ public class Crossroad : RoadStructure
                 AddLink(lanes[i]);
             }
         }
-        Invoke("UpdateCrossroad", 0.05f);
-    }
-    private void Update()
-    {
-        if (VehicleOnCrossRoad)
-            if (!_Vehicle)
-                VehicleOnCrossRoad = false; 
+        Invoke("UpdateCrossroad", 0.1f);
     }
 }
