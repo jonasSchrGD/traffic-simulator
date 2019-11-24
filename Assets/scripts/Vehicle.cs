@@ -76,6 +76,8 @@ public class Vehicle : MonoBehaviour
 
     private void Update()
     {
+        FindLeadingVehicle();
+        FindFreeTarget();
         float freeAcceleration = CalculateVelocity();
 
         transform.position = Vector2.MoveTowards(transform.position, _CurrentTarget, Time.deltaTime * _Velocity);
@@ -107,9 +109,6 @@ public class Vehicle : MonoBehaviour
 
             UpdateRotation();
         }
-        if ((Vector2)_FreeTarget == _Path[_Path.Count - 1]._Nodes[1].position && (_FreeTarget - transform.position).magnitude - _CarLength / 2 < 1)
-            GetNextLane();
-        FindFreeTarget();
     }
     private bool GetNextLane()
     {
@@ -127,16 +126,14 @@ public class Vehicle : MonoBehaviour
 
         ++_PathIdx;
         Lane current = _Path[_PathIdx];
-        current.AddVehicle(gameObject);
-        _CurrentLane = current;
-        FindLeadingVehicle();
 
-        if (_CurrentCrossroad && _CurrentLane.Parent != null)
+        if (_CurrentCrossroad && current.Parent != null && _CurrentLane.Parent == null)
         {
-            _CurrentCrossroad.LeaveCrossRoad();
+            _CurrentCrossroad.LeaveCrossRoad(_CurrentLane);
             _CurrentCrossroad = null;
         }
 
+        current.AddVehicle(gameObject);
         return true;
     }
 
@@ -185,9 +182,15 @@ public class Vehicle : MonoBehaviour
     }
 
     Crossroad _CurrentCrossroad = null;
-    float _CrossroadDistance = 3.5f;
+    float _CrossroadDistance = 4.0f;
     private void FindFreeTarget()
     {
+        if(_CurrentLane == _Path[_Path.Count - 1])
+        {
+            _FreeTarget = Vector3.forward * 10000;
+            return;
+        }
+
         Lane endLane = _CurrentLane;
         while(endLane._Nodes[1].connectedLanes.Count == 1)
         {
@@ -204,16 +207,13 @@ public class Vehicle : MonoBehaviour
         }
 
         if(Vector2.Distance(endLane._Nodes[1].position, transform.position) < _CrossroadDistance && 
-            _CurrentLane._Nodes[1].parent.crossroad && _CurrentLane._Nodes[1].parent.crossroad.roadCount > 2 && 
-            endLane._Nodes[1].parent.crossroad.EnterCrossroad(gameObject))
+            _CurrentLane._Nodes[1].parent.crossroad && _CurrentLane._Nodes[1].parent.crossroad.roadCount > 2)
         {
-            if (_CurrentLane.GetLeadingVehicle(gameObject) == null && _Path[_PathIdx + 2].CanEnter() && !_CurrentCrossroad)
+            if (_CurrentLane.GetLeadingVehicle(gameObject) == null && _Path[_PathIdx + 2].CanEnter() && !_CurrentCrossroad && endLane._Nodes[1].parent.crossroad.EnterCrossroad(gameObject, _Path[_PathIdx + 1]))
             {
                 _CurrentCrossroad = endLane._Nodes[1].parent.crossroad;
                 _FreeTarget = Vector3.forward * 10000;
             }
-            else
-                endLane._Nodes[1].parent.crossroad.LeaveCrossRoad();
         }
 
         if (!_CurrentCrossroad)
@@ -236,37 +236,25 @@ public class Vehicle : MonoBehaviour
         return freeAcceleration;
     }
 
-    public void RefreshLeadingVehicle()
-    {
-        if (_FollowingVehicle)
-        {
-            Vehicle following = _FollowingVehicle.GetComponent<Vehicle>();
-            _FollowingVehicle = null;
-            following.FindLeadingVehicle();
-        }
-    }
     private void FindLeadingVehicle()
     {
-        int offset = 1;
-
         _LeadingVehicle = _CurrentLane.GetLeadingVehicle(gameObject);
         if (_LeadingVehicle)
             _LeadingVehicle.GetComponent<Vehicle>()._FollowingVehicle = gameObject;
-        else
-            while (_LeadingVehicle == null && _PathIdx + offset < _Path.Count)
-            {
-                _LeadingVehicle = _Path[_PathIdx + offset].GetLeadingVehicle(gameObject);
-                if (_LeadingVehicle)
-                    _LeadingVehicle.GetComponent<Vehicle>()._FollowingVehicle = gameObject;
-                ++offset;
-            }
+
+        else if(_PathIdx + 1 < _Path.Count)
+        {
+            _LeadingVehicle = _Path[_PathIdx + 1].GetLeadingVehicle(gameObject);
+            if (_LeadingVehicle)
+                _LeadingVehicle.GetComponent<Vehicle>()._FollowingVehicle = gameObject;
+        }
     }
 
     private void OnDestroy()
     {
         _CurrentLane.RemoveVehicle(gameObject);
         if (_CurrentCrossroad)
-            _CurrentCrossroad.LeaveCrossRoad();
+            _CurrentCrossroad.LeaveCrossRoad(_Path[_PathIdx]);
 
         if (_FollowingVehicle)
             _FollowingVehicle.GetComponent<Vehicle>()._LeadingVehicle = null;

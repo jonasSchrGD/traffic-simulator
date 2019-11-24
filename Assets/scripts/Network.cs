@@ -31,15 +31,9 @@ public class Network : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    Toggle _FlowToggle = null;
-
     private List<Lane> _Links = new List<Lane>();
     private List<VehicleSpawner> _Spawners = new List<VehicleSpawner>();
     private List<VehicleEnd> _Ends = new List<VehicleEnd>();
-
-    [SerializeField]
-    private GameObject _VehicleBP = null;
 
     static public Network instance
     {
@@ -168,14 +162,14 @@ public class Network : MonoBehaviour
     public List<Lane> CalculatePath(Node startPoint)
     {
         if (_Ends.Count > 0)
-            return CalculatePath(startPoint, _Ends[Random.Range(0, _Ends.Count - 1)].GetConnectedNode());
+            return CalculatePath(startPoint, _Ends[Random.Range(0, _Ends.Count)].GetConnectedNode());
         else return null;
     }
 
     //UI functions
-    public void Simulate()
+    public void Simulate(bool simulate)
     {
-        _Simulate = !_Simulate;
+        _Simulate = simulate;
         if(!_Simulate)
         {
             for (int i = 0; i < _Links.Count; i++)
@@ -184,13 +178,18 @@ public class Network : MonoBehaviour
             }
         }
     }
-    public void DrawDensity()
+    public void DrawDensity(bool drawFlow)
     {
         for (int i = 0; i < _Links.Count; i++)
         {
             if (_Links[i].Parent)
-                _Links[i].Parent.drawFlow = _FlowToggle.isOn;
+                _Links[i].Parent.drawFlow = drawFlow;
         }
+    }
+
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject.transform.root);
     }
 
     //debug purpose

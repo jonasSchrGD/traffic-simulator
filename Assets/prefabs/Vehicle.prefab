@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _LeadingVehicle: {fileID: 0}
-  _MinDistance: 0.25
-  _GapTime: 0.7
+  _MinDistance: 0.75
+  _GapTime: 0.5
   _CarLength: 1
   _AccelerationExp: 30
   _MaxAcceleration: 5

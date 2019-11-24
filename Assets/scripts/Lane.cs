@@ -39,6 +39,7 @@ public class Lane : MonoBehaviour
             }
         }
     }
+    [SerializeField]
     private List<Vector2> _Path = new List<Vector2>();
 
     public Node[] _Nodes = new Node[2];
@@ -114,16 +115,13 @@ public class Lane : MonoBehaviour
 
         if (vehicle.GetComponent<Vehicle>().currentLane)
             vehicle.GetComponent<Vehicle>().currentLane.RemoveVehicle(vehicle);
-        vehicle.GetComponent<Vehicle>().currentLane = this;
+        vehicle.GetComponent<Vehicle>().currentLane = this;//stupid decision
     }
     public void RemoveVehicle(GameObject vehicle)
     {
         int vehicleIdx = _Vehicles.IndexOf(vehicle);
-        if(vehicleIdx > -1 && vehicleIdx < _Vehicles.Count)
-        {
-            vehicle.GetComponent<Vehicle>().RefreshLeadingVehicle();
+        if(vehicleIdx != -1)
             _Vehicles.Remove(vehicle);
-        }
     }
 
     public void DrawGizmos()
@@ -152,7 +150,7 @@ public class Lane : MonoBehaviour
 
     public bool CanEnter()
     {
-        return _Vehicles.Count + 1 <= Mathf.Round(_MaxVehicleCount);
+        return _Vehicles.Count + 1 <= Mathf.RoundToInt(_MaxVehicleCount);
     }
 
     //network calculations
@@ -203,5 +201,6 @@ public class Lane : MonoBehaviour
         {
             Destroy(_Vehicles[i]);
         }
+        _Vehicles.Clear();
     }
 }

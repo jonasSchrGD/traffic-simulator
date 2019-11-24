@@ -7,11 +7,10 @@ public class RoadStructure : MonoBehaviour
     protected List<Lane> _Links = new List<Lane>();
     private bool _Quitting = false;
 
-    protected int AddLink(Lane link)
+    protected void AddLink(Lane link)
     {
         _Links.Add(link);
         Network.instance.AddLink(link);
-        return _Links.Count - 1;
     }
 
     protected void ClearLinks()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RoadPlacement : MonoBehaviour
 {
@@ -22,7 +23,11 @@ public class RoadPlacement : MonoBehaviour
     Image _UIBackGround = null;
 
     [SerializeField]
+    Toggle _FlowToggle = null;
+    [SerializeField]
     Dropdown _BuildingSelection;
+    [SerializeField]
+    Dropdown _SceneSelection;
     [SerializeField]
     InputField _MaxVelInput = null;
     [SerializeField]
@@ -42,6 +47,11 @@ public class RoadPlacement : MonoBehaviour
     private int _State = 0;
     bool _Simulate = false;
 
+    private void Start()
+    {
+        _SceneSelection.value = SceneManager.GetActiveScene().buildIndex;
+        Network.instance.Simulate(false);
+    }
     private void Update()
     {
         _OldMousePos = _CurrentMousePos;
@@ -61,7 +71,7 @@ public class RoadPlacement : MonoBehaviour
             UpdateEditorMode();
         }
     }
-
+    
     private void UpdateEditorInput()
     {
         switch (_State)
@@ -302,21 +312,7 @@ public class RoadPlacement : MonoBehaviour
     }
     public void BuildingChanged()
     {
-        switch (_BuildingSelection.captionText.text)
-        {
-            case "road":
-                _State = 0;
-                break;
-            case "spawn":
-                _State = 1;
-                break;
-            case "end":
-                _State = 2;
-                break;
-            default:
-                _State = -1;
-                break;
-        }
+        _State = _BuildingSelection.value;
     }
     public void UpdateRoadVel()
     {
@@ -335,6 +331,7 @@ public class RoadPlacement : MonoBehaviour
     public void Simulate()
     {
         _Simulate = !_Simulate;
+        Network.instance.Simulate(_Simulate);
         if (_Simulate)
         {
             _LaneCountUI.gameObject.SetActive(false);
@@ -349,5 +346,14 @@ public class RoadPlacement : MonoBehaviour
             _SpawnerUI.gameObject.SetActive(false);
             _LaneCountUI.gameObject.SetActive(true);
         }
+    }
+    public void DrawDensity()
+    {
+        Network.instance.DrawDensity(_FlowToggle.isOn);
+    }
+    public void UpdateScene()
+    {
+        if (_SceneSelection.value != -1 && SceneManager.GetActiveScene().buildIndex != _SceneSelection.value)
+            SceneManager.LoadScene(_SceneSelection.value);
     }
 }

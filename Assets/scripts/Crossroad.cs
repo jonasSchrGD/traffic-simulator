@@ -13,7 +13,6 @@ public class Crossroad : RoadStructure
             return _ConnectedRoads.Count;
         }
     }
-    [SerializeField]
     private float _DrivingSpeed = 5;
     private float _Distance = 0;
     private float _StraightAngle = 160;
@@ -267,11 +266,11 @@ public class Crossroad : RoadStructure
             }
         }
 
+        CalculateNetwork();
         foreach (var link in _Links)
         {
             link.UpdateNodes(true);
         }
-        CalculateNetwork();
     }
     private void CreateTriangle(float roadWidth)
     {
@@ -403,7 +402,7 @@ public class Crossroad : RoadStructure
 
                 float angle = Vector2.Angle(_BeginNodes[i].parent._WorldDirection, -_EndNodes[j].parent._WorldDirection);
                 if (angle > 5)
-                    link.path = CalculatePath(_BeginNodes[i].position, CalculateIntersectPoint(_BeginNodes[i].position, -_BeginNodes[i].parent._WorldDirection, _EndNodes[j].position, -_EndNodes[j].parent._WorldDirection), _EndNodes[j].position);
+                    link.path = CalculatePath(_BeginNodes[i].position, CalculateIntersectPoint(_BeginNodes[i].position, -_BeginNodes[i].parent._WorldDirection, _EndNodes[j].position, -_EndNodes[j].parent._WorldDirection, true), _EndNodes[j].position);
             }
         }
     }
@@ -421,43 +420,62 @@ public class Crossroad : RoadStructure
         }
         return path;
     }
-    private Vector2 CalculateIntersectPoint(Vector2 A1, Vector2 dir1, Vector2 B1, Vector2 dir2)
+    private Vector2 CalculateIntersectPoint(Vector2 A1, Vector2 A2, Vector2 B1, Vector2 B2, bool UseAsDir)
     {
         //https://blog.dakwamine.fr/?p=1943
-        Vector2 A2 = A1 + dir1 * _Distance * 2;
-        Vector2 B2 = B1 + dir2 * _Distance * 2;
+        if(UseAsDir)
+        {
+            A2 = A1 + A2 * _Distance * 2;
+            B2 = B1 + B2 * _Distance * 2;
+        }
+
+        if (A1 == B1 || A1 == B2)
+            return A1;
+        if (A2 == B1 || A2 == B2)
+            return A2;
 
         float tmp = (B2.x - B1.x) * (A2.y - A1.y) - (B2.y - B1.y) * (A2.x - A1.x);
 
         if(tmp != 0)
         {
             float mu = ((A1.x - B1.x) * (A2.y - A1.y) - (A1.y - B1.y) * (A2.x - A1.x)) / tmp;
-            return new Vector2(
+            Vector2 pos  = new Vector2(
                 B1.x + (B2.x - B1.x) * mu,
                 B1.y + (B2.y - B1.y) * mu
             );
+
+            if (UseAsDir || Vector2.Distance(pos, A1) + Vector2.Distance(pos, A2) == Vector2.Distance(A1, A2))
+                return pos;
         }
         return Vector2.zero;
     }
 
-    private bool VehicleOnCrossRoad = false;
-    [SerializeField]
-    GameObject _Vehicle = null;
-    public bool EnterCrossroad(GameObject vehicle)
+    List<int> filledLanes = new List<int>();
+    public bool EnterCrossroad(GameObject vehicle, Lane desiredLane)
     {
-        if (_ConnectedRoads.Count == 2)
-            return true;
-        if (VehicleOnCrossRoad)
+        int desiredIdx = _Links.IndexOf(desiredLane);
+        if (desiredIdx == -1)
             return false;
 
-        VehicleOnCrossRoad = true;
-        _Vehicle = vehicle;
-        return true;
+        for (int i = 0; i < _Links.Count; i++)
+        {
+            if (_Links[i] != desiredLane)
+            {
+                if (CalculateIntersectPoint(_Links[i]._Nodes[0].position, _Links[i]._Nodes[1].position, desiredLane._Nodes[0].position, desiredLane._Nodes[1].position, false) != Vector2.zero &&
+                    filledLanes.IndexOf(i) != -1)
+                    return false;
+            }
+        }
+        if (filledLanes.IndexOf(desiredIdx) == -1)
+        {
+            filledLanes.Add(desiredIdx);
+            return true;
+        }
+        return false;
     }
-    public void LeaveCrossRoad()
+    public void LeaveCrossRoad(Lane lane)
     {
-        VehicleOnCrossRoad = false;
-        _Vehicle = null;
+        filledLanes.Remove(_Links.IndexOf(lane));
     }
 
     private void Start()
@@ -474,3 +492,4 @@ public class Crossroad : RoadStructure
         Invoke("UpdateCrossroad", 0.1f);
     }
 }
+
